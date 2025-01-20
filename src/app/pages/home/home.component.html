@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <span>Self-Help Group</span>
+  </mat-toolbar>
+  
+  <div class="home-container">
+    <mat-card>
+      <h1>Welcome to [Group Name]</h1>
+      <p>
+        Join us in our mission to contribute to societal welfare. Become a member today!
+      </p>
+      <button mat-raised-button color="accent">Take Membership</button>
+    </mat-card>
+  
+    <mat-card>
+      <h2>Our Contributions</h2>
+      <p>Here are some of the tasks we've completed recently:</p>
+      <mat-grid-list cols="3" rowHeight="200px">
+        <mat-grid-tile *ngFor="let task of tasks">
+          <img [src]="task.image" alt="{{ task.title }}" />
+          <mat-grid-tile-footer>
+            <h3>{{ task.title }}</h3>
+          </mat-grid-tile-footer>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </div>
+  
