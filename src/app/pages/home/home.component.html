@@ -1,27 +1,50 @@
-<mat-toolbar color="primary">
-    <span>Self-Help Group</span>
-  </mat-toolbar>
+<div class="home-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Welcome to the Self-Help Group</h1>
+        <p>
+          Empowering communities through collaboration and collective efforts.
+          Join us today and make a difference!
+        </p>
+        <button mat-raised-button color="primary">Become a Member</button>
+      </div>
+      <img src="assets/hero.jpg" alt="Community Image" />
+    </section>
   
-  <div class="home-container">
-    <mat-card>
-      <h1>Welcome to [Group Name]</h1>
-      <p>
-        Join us in our mission to contribute to societal welfare. Become a member today!
-      </p>
-      <button mat-raised-button color="accent">Take Membership</button>
-    </mat-card>
+    <!-- Tasks Section -->
+    <section class="tasks-section">
+      <h2>Our Contributions to Society</h2>
+      <div class="tasks-grid">
+        <mat-card *ngFor="let task of tasks$ | async" class="task-card">
+          <mat-card-header>
+            <mat-card-title>{{ task.title }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="task.image" alt="{{ task.title }}" />
+          <mat-card-content>
+            <p>{{ task.description }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="accent">Learn More</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </section>
   
-    <mat-card>
-      <h2>Our Contributions</h2>
-      <p>Here are some of the tasks we've completed recently:</p>
-      <mat-grid-list cols="3" rowHeight="200px">
-        <mat-grid-tile *ngFor="let task of tasks">
-          <img [src]="task.image" alt="{{ task.title }}" />
-          <mat-grid-tile-footer>
-            <h3>{{ task.title }}</h3>
-          </mat-grid-tile-footer>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
+    <!-- Footer Section -->
+    <footer class="footer">
+      <p>&copy; 2025 Self-Help Group. All Rights Reserved.</p>
+      <div class="social-icons">
+        <button mat-icon-button>
+          <mat-icon>facebook</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>twitter</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>instagram</mat-icon>
+        </button>
+      </div>
+    </footer>
   </div>
   

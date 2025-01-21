@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
-import { collection, collectionData } from '@angular/fire/firestore';
-import { Firestore } from 'firebase/firestore';
+import { collection, collectionData ,Firestore} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [MatCardModule,
+  imports: [
+    CommonModule,
+    MatCardModule,
     MatGridListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
