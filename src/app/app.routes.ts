@@ -1,8 +1,16 @@
 import { provideRouter, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { TeamComponent } from './pages/team/team.component';
+import { ContributionComponent } from './pages/contribution/contribution.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent }, // Default route
+  { path: 'home', component: HomeComponent },
+  { path: 'team', component: TeamComponent },
+  { path: 'contribution', component: ContributionComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' },
   ];
 
   export const appConfig = {
