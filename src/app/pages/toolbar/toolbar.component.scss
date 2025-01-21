@@ -3,12 +3,16 @@ mat-toolbar {
     justify-content: space-between;
     align-items: center;
   
+    .logo {
+      height: 40px; /* Adjust the height as needed */
+      margin-right: 10px;
+    }
+  
     .title {
       font-size: 1.5rem;
       font-weight: bold;
       color: #fff;
     }
-  
     .spacer {
       flex: 1;
     }
