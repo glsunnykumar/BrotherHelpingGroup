@@ -5,7 +5,6 @@
     background-color: #f9f9f9;
     font-family: 'Roboto', sans-serif;
     margin-top: 10px;
-
     .home-carousel {
       text-align: center;
       padding: 2rem;
@@ -19,11 +18,12 @@
       .carousel-container {
         display: flex;
         gap: 1rem;
-        overflow-x: auto;
+        overflow: hidden; // Prevent items from being visible outside the container
         padding: 1rem 0;
+        position: relative;
     
         .carousel-card {
-          flex: 0 0 auto;
+          flex: 0 0 auto; // Prevent items from stretching
           width: 150px;
           text-align: center;
           background: #fff;
@@ -57,6 +57,11 @@
             color: #666;
           }
         }
+    
+        &.animate-carousel {
+          display: flex;
+          animation: scroll 10s linear infinite; // Smooth scrolling animation
+        }
       }
     
       .view-more {
@@ -67,7 +72,17 @@
           padding: 0.5rem 1rem;
         }
       }
+    
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-150px * 5)); // Adjust based on card width and gap
+        }
+      }
     }
+    
     
   
     .hero-section {

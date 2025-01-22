@@ -14,21 +14,22 @@
 
     <div class="home-carousel">
       <h2>Top Team Members</h2>
-      
+    
       <!-- Carousel -->
-      <div class="carousel-container">
+      <div class="carousel-container animate-carousel">
         <div class="carousel-card" *ngFor="let member of topMembers">
           <img [src]="member.photo" alt="{{ member.name }}" class="carousel-photo" />
           <h3>{{ member.name }}</h3>
           <p>{{ member.role }}</p>
         </div>
       </div>
-      
+    
       <!-- View More Button -->
       <div class="view-more">
         <button mat-raised-button color="primary" (click)="navigateToTeam()">View More</button>
       </div>
     </div>
+    
   
     <!-- Tasks Section -->
     <section class="tasks-section">
