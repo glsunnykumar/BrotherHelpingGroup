@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { ContributionComponent } from "../contribution/contribution.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -23,11 +24,27 @@ import { ContributionComponent } from "../contribution/contribution.component";
 })
 export class HomeComponent {
 
+   // Top 5 team members
+   topMembers = [
+    { name: 'Alice Johnson', role: 'Chairman/President', photo: 'https://i.pravatar.cc/150?img=1' },
+    { name: 'Bob Smith', role: 'Vice President', photo: 'https://i.pravatar.cc/150?img=2' },
+    { name: 'Charlie Brown', role: 'Finance Sectrary', photo: 'https://i.pravatar.cc/150?img=3' },
+    { name: 'Diana Prince', role: 'Sectrary', photo: 'https://i.pravatar.cc/150?img=4' },
+    { name: 'Ethan Hunt', role: 'Advisor', photo: 'https://i.pravatar.cc/150?img=5' },
+  ];
+
   tasks$: Observable<any[]>;
 
-  constructor(private firestore: Firestore) {
+  constructor(private firestore: Firestore ,
+    private router: Router
+  ) {
     const tasksCollection = collection(this.firestore, 'tasks');
     this.tasks$ = collectionData(tasksCollection, { idField: 'id' });
   }
+
+    // Navigate to team page
+    navigateToTeam() {
+      this.router.navigate(['/team']);
+    }
 
 }
