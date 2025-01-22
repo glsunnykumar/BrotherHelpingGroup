@@ -1,1 +1,41 @@
-<p>team works!</p>
+<div class="team-page">
+    <h1>Our Team</h1>
+  
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input
+        #searchInput
+        type="text"
+        placeholder="Search team members by name..."
+        (input)="search(searchInput.value)"
+      />
+    </div>
+  
+    <!-- Team Grid -->
+    <div class="team-grid">
+      <div class="team-card" *ngFor="let member of paginatedMembers">
+        <img [src]="member.photo" alt="{{ member.name }}" class="team-photo" />
+        <div class="team-info">
+          <h3 class="team-name">{{ member.name }}</h3>
+          <p class="team-role">{{ member.role }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button mat-raised-button color="primary" (click)="previousPage()" [disabled]="currentPage === 1">
+        Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ Math.ceil(filteredMembers.length / pageSize) }}</span>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="nextPage()"
+        [disabled]="currentPage * pageSize >= filteredMembers.length"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  
