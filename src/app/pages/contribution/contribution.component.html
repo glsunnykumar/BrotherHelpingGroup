@@ -1,1 +1,27 @@
-<p>contribution works!</p>
+<div class="contribution-page">
+  <h1>Our Contributions</h1>
+  <div class="contribution-grid">
+    <mat-card *ngFor="let event of contributions" class="contribution-card">
+      <img mat-card-image [src]="event.image" alt="{{ event.title }}" />
+      <mat-card-header>
+        <mat-card-title>
+          <div class="title-row">
+            <span class="title">{{ event.title }}</span>
+            <span class="date">{{ event.date | date: 'dd/MM/yy' }}</span>
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <span class="location">{{ event.location }}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="description">{{ event.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="event.isExpanded = !event.isExpanded">
+          {{ event.isExpanded ? 'Show Less' : 'Learn More' }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

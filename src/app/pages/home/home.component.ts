@@ -6,6 +6,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { ContributionComponent } from "../contribution/contribution.component";
 
 @Component({
   selector: 'app-home',
@@ -14,8 +15,9 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     MatGridListModule,
     MatToolbarModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    ContributionComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

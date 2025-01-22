@@ -1,11 +1,14 @@
-.home-page {
+.home-page { 
     display: flex;
     flex-direction: column;
     gap: 2rem;
     background-color: #f9f9f9;
     font-family: 'Roboto', sans-serif;
+    margin-top: 10px;
   
     .hero-section {
+      
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
