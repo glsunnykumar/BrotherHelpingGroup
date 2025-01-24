@@ -1,40 +1,60 @@
 <div class="home-page">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1>Welcome to the Self-Help Group</h1>
-        <p>
-          Empowering communities through collaboration and collective efforts.
-          Join us today and make a difference!
-        </p>
-        <button mat-raised-button color="primary">Become a Member</button>
-      </div>
-      <img src="assets/hero.webp" alt="Community Image" />
-    </section>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to the Self-Help Group</h1>
+      <p>
+        Empowering communities through collaboration and collective efforts.
+        Join us today and make a difference!
+      </p>
+      <button mat-raised-button color="primary">Become a Member</button>
+    </div>
+    <img src="assets/hero.webp" alt="Community Image" />
+  </section>
 
-    <div class="home-carousel">
-      <h2>Our Team Members</h2>
-    
-      <!-- Carousel -->
-      <div class="carousel-container animate-carousel">
-        <div class="carousel-card" *ngFor="let member of topMembers">
-          <img [src]="member.photo" alt="{{ member.name }}" class="carousel-photo" />
-          <h3>{{ member.name }}</h3>
-          <p>{{ member.role }}</p>
+  <section class="team-section">
+    <h2>Two Column Team </h2>
+    <div class="home-grid">
+      <!-- Left Column: Administrators -->
+      <div class="admin-list">
+         <h3>Administrators</h3>
+      <div class="admin-grid">
+      <div *ngFor="let admin of administrators" class="admin-card">
+        <img [src]="admin.photo" alt="{{ admin.name }}" class="admin-photo" />
+        <div class="admin-info">
+          <h4>{{ admin.name }}</h4>
+          <p>{{ admin.role }}</p>
         </div>
       </div>
-    
-      <!-- View More Button -->
-      <div class="view-more">
-        <button mat-raised-button color="primary" (click)="navigateToTeam()">View More</button>
       </div>
+      
+      </div>
+
+      <!-- Right Column: Carousel -->
+      <div class="carousel-column">
+        <h3>Our Top Team Members</h3>
+        <div class="carousel-container animate-carousel">
+          <div class="carousel-card" *ngFor="let member of topMembers">
+            <img [src]="member.photo" alt="{{ member.name }}" class="carousel-photo" />
+            <h3>{{ member.name }}</h3>
+            <p>{{ member.role }}</p>
+          </div>
+        </div>
+        <div class="view-more">
+          <button mat-raised-button color="primary" (click)="navigateToTeam()">View More</button>
+        </div>
+      </div>
+      
     </div>
-    
-  
-    <!-- Tasks Section -->
-    <section class="tasks-section">
-      <app-contribution></app-contribution>
-      <!-- <div class="tasks-grid">
+
+
+
+  </section>
+
+  <!-- Tasks Section -->
+  <section class="tasks-section">
+    <app-contribution></app-contribution>
+    <!-- <div class="tasks-grid">
         <mat-card *ngFor="let task of tasks$ | async" class="task-card">
           <mat-card-header>
             <mat-card-title>{{ task.title }}</mat-card-title>
@@ -48,22 +68,21 @@
           </mat-card-actions>
         </mat-card>
       </div> -->
-    </section>
-  
-    <!-- Footer Section -->
-    <footer class="footer">
-      <p>&copy; 2025 Self-Help Group. All Rights Reserved.</p>
-      <div class="social-icons">
-        <button mat-icon-button>
-          <mat-icon>facebook</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="fa-brands fa-twitter"></mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="fa-brands fa-instagram"></mat-icon>
-        </button>
-      </div>
-    </footer>
-  </div>
-  
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>&copy; 2025 Self-Help Group. All Rights Reserved.</p>
+    <div class="social-icons">
+      <button mat-icon-button>
+        <mat-icon>facebook</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon class="fa-brands fa-twitter"></mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon class="fa-brands fa-instagram"></mat-icon>
+      </button>
+    </div>
+  </footer>
+</div>

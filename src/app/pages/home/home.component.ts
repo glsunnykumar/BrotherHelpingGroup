@@ -24,6 +24,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
+  administrators = [
+    { name: 'Admin 1', role: 'Group Leader', photo:'https://i.pravatar.cc/150?img=1' },
+    { name: 'Admin 2', role: 'Co-Leader', photo: 'https://i.pravatar.cc/150?img=2' },
+    { name: 'Admin 3', role: 'Treasurer', photo: 'https://i.pravatar.cc/150?img=3' },
+    { name: 'Admin 4', role: 'Secretary', photo: 'https://i.pravatar.cc/150?img=4' },
+  ];
+
    // Top 5 team members
    topMembers = [
     { name: 'Alice Johnson', role: 'Chairman/President', photo: 'https://i.pravatar.cc/150?img=1' },
