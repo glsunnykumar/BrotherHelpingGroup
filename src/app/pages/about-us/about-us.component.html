@@ -1,1 +1,76 @@
-<p>about-us works!</p>
+<div class="contact-us-container">
+    <!-- Left Column: Group Contact Details -->
+    <div class="contact-details">
+      <h2>Contact Our Group</h2>
+      <div class="contact-card">
+        <h3>Head Office</h3>
+        <p>123 Main Street, City Name, State, Country</p>
+      </div>
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p><a href="mailto:info@selfhelpgroup.com">infoselfhelpgroup.com</a></p>
+      </div>
+      <div class="contact-card">
+        <h3>Phone</h3>
+        <p><a href="tel:+1234567890">+1 234-567-890</a></p>
+      </div>
+    </div>
+  
+    <!-- Right Column: Help Request Form -->
+    <div class="help-request-form">
+      <h2>Request Help</h2>
+      <p>If you need assistance, provide your details and submit the form below:</p>
+  
+      <form [formGroup]="helpRequestForm" (ngSubmit)="submitHelpRequest()">
+        <!-- Full Name -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter your full name" />
+        </mat-form-field>
+  
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Enter your email" />
+        </mat-form-field>
+  
+        <!-- Phone -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone</mat-label>
+          <input matInput type="tel" formControlName="phone" placeholder="Enter your phone number" />
+        </mat-form-field>
+  
+        <!-- Details About the Matter -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Details About the Matter</mat-label>
+          <textarea
+            matInput
+            rows="5"
+            formControlName="details"
+            placeholder="Describe the issue for which you need help"
+          ></textarea>
+        </mat-form-field>
+  
+        <!-- Identification Proof Upload -->
+        <div class="file-upload">
+          <label>Upload Identification Proof:</label>
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept=".jpg, .png, .pdf"
+          />
+        </div>
+  
+        <!-- Submit Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="helpRequestForm.invalid"
+        >
+          Submit Request
+        </button>
+      </form>
+    </div>
+  </div>
+  

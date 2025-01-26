@@ -115,6 +115,20 @@
               color: #666;
             }
           }
+          &.animate-carousel {
+            display: flex;
+            animation: scroll 10s linear infinite; // Smooth scrolling animation
+          }
+
+          /* Keyframes for scrolling effect */
+@keyframes scroll {
+  0% {
+    transform: translateX(0); // Start at the initial position
+  }
+  100% {
+    transform: translateX(-50%); // Move left by 100% of the container width
+  }
+}
         }
 
         .view-more {
@@ -125,6 +139,8 @@
             text-transform: uppercase;
           }
         }
+
+      
       }
 
 
