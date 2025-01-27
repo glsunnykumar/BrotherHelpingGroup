@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { ContributionComponent } from "../contribution/contribution.component";
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
@@ -17,12 +18,32 @@ import { Router } from '@angular/router';
     MatGridListModule,
     MatToolbarModule,
     MatIconModule,
+    MatButtonModule,
     ContributionComponent
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+
+  latestNews = [
+    {
+      title: 'Community Cleanup Drive',
+      description: 'A successful cleanup drive organized by our group.',
+      date: new Date('2025-01-20'),
+    },
+    {
+      title: 'Health Camp Conducted',
+      description: 'Free health checkup camp was held for the community.',
+      date: new Date('2025-01-15'),
+    },
+    {
+      title: 'Tree Plantation Drive',
+      description: 'Planted 200+ trees in the city park.',
+      date: new Date('2025-01-10'),
+    },
+  ];
+  
 
   administrators = [
     { name: 'Admin 1', role: 'Group Leader', photo:'https://i.pravatar.cc/150?img=1' },

@@ -1,36 +1,67 @@
 <div class="home-page">
   <!-- Hero Section -->
-  <section class="hero-section">
+  <!-- <section class="hero-section">
+    <img src="assets/Certificate.jpeg" height="200px" alt="Community Image" />
     <div class="hero-content">
-      <h1>Welcome to the Self-Help Group</h1>
+      <h1>Welcome to the Brother's-Helping Group</h1>
       <p>
         Empowering communities through collaboration and collective efforts.
         Join us today and make a difference!
       </p>
       <button mat-raised-button color="primary">Become a Member</button>
     </div>
-    <img src="assets/hero.webp" alt="Community Image" />
-  </section>
+   
+  </section> -->
+
+  <!-- Hero Section -->
+<section class="hero-section">
+  <div class="column left-column">
+    <!-- Left Column -->
+    <img src="assets/Certificate.jpeg"  alt="Community Image" />
+  </div>
+
+  <div class="column center-column">
+    <!-- Center Column -->
+    <div class="hero-content">
+      <h1>Welcome to the Brother's-Helping Group</h1>
+      <p>
+        Empowering communities through collaboration and collective efforts.
+        Join us today and make a difference!
+      </p>
+      <button mat-raised-button color="primary">Become a Member</button>
+    </div>
+  </div>
+
+  <div class="column right-column">
+    <!-- Right Column -->
+    <!-- Add any additional content for the right column here -->
+    <img src="assets/QR.jpeg"  alt="Community Image" />
+  </div>
+</section>
+
 
   <section class="team-section">
-    <h2>Two Column Team </h2>
+    <h2>Meet Our Amazing Team</h2>
+    <p class="team-description">
+      Our team is dedicated to making a difference by serving society with passion and commitment. 
+      Each member contributes their skills and efforts to bring about meaningful change in our community.
+    </p>
     <div class="home-grid">
       <!-- Left Column: Administrators -->
       <div class="admin-list">
-         <h3>Administrators</h3>
-      <div class="admin-grid">
-      <div *ngFor="let admin of administrators" class="admin-card">
-        <img [src]="admin.photo" alt="{{ admin.name }}" class="admin-photo" />
-        <div class="admin-info">
-          <h4>{{ admin.name }}</h4>
-          <p>{{ admin.role }}</p>
+        <h3>Administrators</h3>
+        <div class="admin-grid">
+          <div *ngFor="let admin of administrators" class="admin-card">
+            <img [src]="admin.photo" alt="{{ admin.name }}" class="admin-photo" />
+            <div class="admin-info">
+              <h4>{{ admin.name }}</h4>
+              <p>{{ admin.role }}</p>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      
-      </div>
-
-      <!-- Right Column: Carousel -->
+  
+      <!-- Middle Column: Carousel -->
       <div class="carousel-column">
         <h3>Our Top Team Members</h3>
         <div class="carousel-container animate-carousel">
@@ -44,12 +75,21 @@
           <button mat-raised-button color="primary" (click)="navigateToTeam()">View More</button>
         </div>
       </div>
-      
+  
+      <!-- Right Column: Latest News -->
+      <div class="news-column">
+        <h3>Latest News</h3>
+        <div class="news-list">
+          <div *ngFor="let news of latestNews" class="news-card">
+            <h4>{{ news.title }}</h4>
+            <p>{{ news.description }}</p>
+            <small>{{ news.date | date: 'shortDate' }}</small>
+          </div>
+        </div>
+      </div>
     </div>
-
-
-
   </section>
+  
 
   <!-- Tasks Section -->
   <section class="tasks-section">
