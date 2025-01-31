@@ -51,15 +51,16 @@ export class HomeComponent implements OnInit {
     { name: 'Shashi Abinav', role: 'Vice President', photo:'assets/Shashi.jpg' },
     { name: 'Vipan Dogra', role: 'Secrtaray', photo: 'assets/Vipan.jpg' },
     { name: 'Rajiv Kumar', role: 'Finance Sectrary', photo: 'assets/Rajiv.jpg' },
-    { name: 'Atul Ran', role: 'Media Coordinator', photo: 'assets/Don.jpg' },
+    { name: 'Atul Rana', role: 'Media Coordinator', photo: 'assets/Don.jpg' },
   ];
 
    // Top 5 team members
    topMembers = [
-    { name: 'Alice Johnson', role: 'Chairman/President', photo: 'https://i.pravatar.cc/150?img=1' },
-    { name: 'Bob Smith', role: 'Vice President', photo: 'https://i.pravatar.cc/150?img=2' },
-    { name: 'Charlie Brown', role: 'Finance Sectrary', photo: 'https://i.pravatar.cc/150?img=3' },
-    { name: 'Diana Prince', role: 'Sectrary', photo: 'https://i.pravatar.cc/150?img=4' },
+    { name: 'Sarvjeet Guleria', role: 'Member', photo: 'assets/Sarvjeet.jpg' },
+    { name: 'Akshay Kumar', role: 'Member', photo: 'assets/Akshay.jpg' },
+    { name: 'Megraj', role: 'Member', photo: 'assets/megraj.jpeg' },
+    { name: 'Chanchal Katoch', role: 'Member', photo: 'assets/chanchal.png' },
+    
   
   ];
 

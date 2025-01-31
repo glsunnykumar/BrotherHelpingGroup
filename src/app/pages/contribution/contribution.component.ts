@@ -16,46 +16,38 @@ export class ContributionComponent {
 
   contributions = [
     {
-      title: 'Tree Plantation Drive',
-      description: 'We planted 500+ trees in our local park to combat deforestation and promote greenery.',
-      image: 'assets/tree-plantation.webp',
-      date: '2025-03-10',
-      location: 'City Park, Springfield',
+      title: 'Help of Ill Girl',
+      description: 'Our Group Member helped a poor girl who were ill from long time. With a Cheque of 7000RS',
+      image: 'assets/Banwala.jpg',
+      date: '2025-01-25',
+      location: 'Chetru, Kangra H.P',
       isExpanded: false,
     },
     {
-      title: 'Health Checkup Camp',
-      description: 'Organized a free health camp for 200+ underprivileged individuals in our community.',
-      image: 'assets/health-camp.webp',
-      date: '2025-03-10',
-      location: 'City Park, Springfield',
+      title: 'President Election',
+      description: 'At Chetru more than 20 members participated in president Election.And with all member consent Sh Pankaj kumar was elected as the President of Group with immediate effect',
+      image: 'assets/PresidentElec.jpg',
+      date: '2025-01-20',
+      location: 'Chetru, Kangra',
       isExpanded: false,
     },
    
     {
-      title: 'Food Distribution',
-      description: 'Distributed food packets to over 1000 people affected by floods in nearby villages.',
-      image: 'assets/food-distribution.webp',
-      date: '2025-03-10',
-      location: 'City Park, Springfield',
+      title: 'Plantation Drive',
+      description: 'Approximately 20 Plants was planted near Gangbaro and Bagli Region.',
+      image: 'assets/Plantation.jpg',
+      date: '2024-08-10',
+      location: 'Bagli Kangra',
       isExpanded: false,
     },
     {
-      title: 'Food Distribution',
-      description: 'Distributed food packets to over 1000 people affected by floods in nearby villages.',
-      image: 'assets/food-distribution.webp',
-      date: '2025-03-10',
-      location: 'City Park, Springfield',
+      title: 'Help for Marriage of a Girl',
+      description: 'Donated 11000 Rs for the Marriage of one of our sister at the Abdullapur Village.',
+      image: 'assets/Abdullapur.jpg',
+      date: '2024-03-14',
+      location: 'Abdullapur Kangra',
       isExpanded: false,
     }
-    ,
-    {
-      title: 'Health Checkup Camp',
-      description: 'Organized a free health camp for 200+ underprivileged individuals in our community.',
-      image: 'assets/health-camp.webp',
-      date: '2025-03-10',
-      location: 'City Park, Springfield',
-      isExpanded: false,
-    },
+  
   ];
 }

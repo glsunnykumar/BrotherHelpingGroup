@@ -1,94 +1,91 @@
 .contribution-page {
-  padding: 2rem;
-  background-color: #f9f9f9;
+  max-width: 1200px;
+  padding: 20px;
+  text-align: center;
+}
 
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #3f51b5;
-    font-size: 2rem;
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* ✅ Responsive Grid */
+.contribution-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 10px; /* Prevents edge overflow */
+}
+
+/* ✅ Card Styling */
+.contribution-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  max-width: 100%; /* Ensures it doesn't overflow */
+  box-sizing: border-box; /* Keeps width inside boundaries */
+}
+
+.contribution-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ✅ Image Adjustments */
+.event-image {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between; /* Distributes title & date evenly */
+  align-items: center; /* Aligns them vertically */
+  width: 100%; /* Ensures full-width alignment */
+  
+  .title {
     font-weight: bold;
+    font-size: 1.2rem;
+    flex: 1; /* Makes title take up equal space */
+    text-align: left; /* Aligns title to the left */
   }
 
+  .date {
+    font-size: 0.9rem;
+    color: gray;
+    flex: 1; /* Makes date take up equal space */
+    text-align: right; /* Aligns date to the right */
+  }
+}
+
+
+.location {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ✅ Mobile Optimizations */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
   .contribution-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-
-    .contribution-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      padding: 2rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      }
-
-      img {
-        max-height: 200px;
-        object-fit: cover;
-        border-bottom: 1px solid #ddd;
-      }
-
-      mat-card-title {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-
-        .title-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-
-          .title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #3f51b5;
-            flex: 1;
-            margin-right: 1rem;
-          }
-
-          .date {
-            font-size: 0.9rem;
-            color: #757575;
-            white-space: nowrap;
-          }
-        }
-      }
-
-      mat-card-subtitle {
-        margin-top: 0.5rem;
-
-        .location {
-          font-size: 0.9rem;
-          color: #666;
-        }
-      }
-
-      mat-card-content {
-        margin-top: 1rem;
-
-        .description {
-          font-size: 0.95rem;
-          line-height: 1.4;
-          color: #444;
-        }
-      }
-
-      mat-card-actions {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: auto;
-
-        button {
-          font-size: 0.9rem;
-        }
-      }
-    }
+    grid-template-columns: 1fr;
+  }
+  
+  .title {
+    font-size: 1rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+    align-content: flex-start;
+  }
+  
+  mat-card-actions {
+    text-align: center;
   }
 }
