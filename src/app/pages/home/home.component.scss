@@ -2,11 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  background-color: #f9f9f9;
+  background-color: #cee5fb;
   font-family: 'Roboto', sans-serif;
-  margin-top: 10px;
+  padding: 1rem;
 
   .mission-section {
+    .mission-card{
+      padding: 2rem;
+      background-color: #f9f9f9;
+   
     .mission-grid {
       display: flex;
       justify-content: space-between;
@@ -63,11 +67,12 @@
       
     }
   }
+  }
   
 
 
 
-  .team-section {
+  .team1-section {
     padding: 20px;
 
     h2 {
@@ -352,5 +357,124 @@
         font-size: 1.5rem;
       }
     }
+  }
+}
+
+.team-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+
+  padding: 20px;
+
+  .mission-card{
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+
+  .viewMorebutton
+  {
+    display: flex;
+    justify-content: center; /* Horizontally center the button */
+    align-items: center; 
+    button {
+      margin-top: 2rem;
+      font-size: 1rem;
+      padding: 8px 16px;
+      background: #ff4081;
+      color: #fff;
+    }
+  }
+  
+
+  h2 {
+    text-align: center;
+   
+    margin-bottom: 2rem;
+    color: #3f51b5;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+}
+
+.team-container {
+  max-width: 1200px;
+
+  /* ✅ Responsive Grid Layout */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+}
+
+
+.team-member {
+  text-align: center;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.team-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.team-designation {
+  font-size: 1rem;
+  color: gray;
+}
+
+.swiper-container {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-card {
+  text-align: center;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.carousel-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.carousel-designation {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .team-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

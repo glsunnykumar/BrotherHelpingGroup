@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { collection, collectionData ,Firestore} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ContributionComponent } from "../contribution/contribution.component";
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { register } from 'swiper/element-bundle';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +23,10 @@ import { MatButtonModule } from '@angular/material/button';
     ContributionComponent
 ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  schemas :[CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   latestNews = [
     {
@@ -46,10 +48,10 @@ export class HomeComponent {
   
 
   administrators = [
-    { name: 'Admin 1', role: 'Group Leader', photo:'https://i.pravatar.cc/150?img=1' },
-    { name: 'Admin 2', role: 'Co-Leader', photo: 'https://i.pravatar.cc/150?img=2' },
-    { name: 'Admin 3', role: 'Treasurer', photo: 'https://i.pravatar.cc/150?img=3' },
-    { name: 'Admin 4', role: 'Secretary', photo: 'https://i.pravatar.cc/150?img=4' },
+    { name: 'Shashi Abinav', role: 'Vice President', photo:'assets/Shashi.jpg' },
+    { name: 'Vipan Dogra', role: 'Secrtaray', photo: 'assets/Vipan.jpg' },
+    { name: 'Rajiv Kumar', role: 'Finance Sectrary', photo: 'assets/Rajiv.jpg' },
+    { name: 'Atul Ran', role: 'Media Coordinator', photo: 'assets/Don.jpg' },
   ];
 
    // Top 5 team members
@@ -58,7 +60,7 @@ export class HomeComponent {
     { name: 'Bob Smith', role: 'Vice President', photo: 'https://i.pravatar.cc/150?img=2' },
     { name: 'Charlie Brown', role: 'Finance Sectrary', photo: 'https://i.pravatar.cc/150?img=3' },
     { name: 'Diana Prince', role: 'Sectrary', photo: 'https://i.pravatar.cc/150?img=4' },
-    { name: 'Ethan Hunt', role: 'Advisor', photo: 'https://i.pravatar.cc/150?img=5' },
+  
   ];
 
   tasks$: Observable<any[]>;
@@ -68,6 +70,9 @@ export class HomeComponent {
   ) {
     const tasksCollection = collection(this.firestore, 'tasks');
     this.tasks$ = collectionData(tasksCollection, { idField: 'id' });
+  }
+  ngOnInit(): void {
+    register();
   }
 
     // Navigate to team page

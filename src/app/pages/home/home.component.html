@@ -41,14 +41,18 @@
 
 
 <section class="mission-section">
+  <mat-card class="mission-card">
   <div class="mission-grid">
     <!-- Left Column: Administrators -->
     <div class="mission-image">
+      <mat-card>
       <img src="assets/OurMissionShort.png" height="500px" alt="Mission Image" />
+    </mat-card>
     </div>
 
       <!-- Right Column: Message Column -->
       <div class="message-column">
+        <mat-card>
         <div class="message-content">
           <img src="assets/president.png" alt="Admin Photo" class="admin-photo" />
           <h3 class="admin-name">Sh Pankaj Kumar</h3>
@@ -57,65 +61,72 @@
           "Our mission is to help the poor and deprived in times of need. We dedicate ourselves to providing support during illness, assisting with the marriage of poor daughters, organizing blood donation camps, and distributing food and clothes to the underprivileged. Through compassion and collective effort, we aim to create a positive impact in the lives of those who need it most."
         </p>
         </div>
+      </mat-card>
       </div>
 
 
 
    
   </div>
+</mat-card>
 </section>
 
 
-  <section class="team-section">
-    <h2>Meet Our Amazing Team</h2>
-    <p class="team-description">
-      Our team is dedicated to making a difference by serving society with passion and commitment. 
-      Each member contributes their skills and efforts to bring about meaningful change in our community.
-    </p>
-    <div class="home-grid">
-      <!-- Left Column: Administrators -->
-      <div class="admin-list">
-        <h3>Administrators</h3>
-        <div class="admin-grid">
-          <div *ngFor="let admin of administrators" class="admin-card">
-            <img [src]="admin.photo" alt="{{ admin.name }}" class="admin-photo" />
-            <div class="admin-info">
-              <h4>{{ admin.name }}</h4>
-              <p>{{ admin.role }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Middle Column: Carousel -->
-      <div class="carousel-column">
-        <h3>Our Top Team Members</h3>
-        <div class="carousel-container animate-carousel">
-          <div class="carousel-card" *ngFor="let member of topMembers">
-            <img [src]="member.photo" alt="{{ member.name }}" class="carousel-photo" />
-            <h3>{{ member.name }}</h3>
-            <p>{{ member.role }}</p>
-          </div>
-        </div>
-        <div class="view-more">
-          <button mat-raised-button color="primary" (click)="navigateToTeam()">View More</button>
-        </div>
-      </div>
-  
-      <!-- Right Column: Latest News -->
-      <div class="news-column">
-        <h3>Latest News</h3>
-        <div class="news-list">
-          <div *ngFor="let news of latestNews" class="news-card">
-            <h4>{{ news.title }}</h4>
-            <p>{{ news.description }}</p>
-            <small>{{ news.date | date: 'shortDate' }}</small>
-          </div>
-        </div>
+<section class="team-section">
+  <mat-card class="mission-card">
+  <h2>Meet Our Amazing Team old</h2>
+  <p class="team-description">
+    Our team is dedicated to making a difference by serving society with passion and commitment. 
+    Each member contributes their skills and efforts to bring about meaningful change in our community.
+  </p>
+  <div class="team-container">
+    <!-- First Row: Four Key Members -->
+    <div class="team-grid">
+      <div class="team-member" *ngFor="let member of administrators">
+        <img [src]="member.photo" alt="{{ member.name }}" class="team-photo" />
+        <h3 class="team-name">{{ member.name }}</h3>
+        <p class="team-designation">{{ member.role }}</p>
       </div>
     </div>
-  </section>
-  
+
+    <!-- Second Row: Carousel for Other Members -->
+    <mat-card class="carousel-container">
+       <!-- Second Row: Carousel for Other Members -->
+       <div class="carousel-wrapper">
+        <swiper-container
+          slides-per-view="2"
+          space-between="20"
+          loop="true"
+          navigation="true"
+          pagination="true"
+          autoplay="true"          
+          autoplay-delay="3000"    
+          breakpoints='{
+            "640": { "slidesPerView": 1 },
+            "768": { "slidesPerView": 2 },
+            "1024": { "slidesPerView": 3 }
+          }'
+        >
+          <swiper-slide *ngFor="let member of topMembers">
+            <div class="carousel-card">
+              <img
+                [src]="member.photo"
+                alt="{{ member.name }}"
+                class="carousel-photo"
+              />
+              <h3 class="carousel-name">{{ member.name }}</h3>
+              <p class="carousel-designation">{{ member.role }}</p>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </mat-card>
+    <div class="viewMorebutton">
+    <button mat-raised-button color="primary" (click)="navigateToTeam()">View More</button>
+  </div>
+  </div>
+</mat-card>
+</section>
 
   <!-- Tasks Section -->
   <section class="tasks-section">
