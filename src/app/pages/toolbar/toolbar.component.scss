@@ -1,80 +1,32 @@
-mat-toolbar {
+.logo {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.org-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.full-menu {
   display: flex;
-  justify-content: space-between; /* Space between title/logo and buttons */
-  align-items: center; /* Vertically align all items */
-  padding: 0 16px; /* Add horizontal padding for spacing */
-  background-color: #3f51b5; /* Default Material primary color */
-  color: white; /* Toolbar text color */
+  gap: 10px;
+}
 
-  /* Logo styling */
-  .logo {
-    height: 40px;
-    margin-right: 10px;
-    display: flex; /* Ensure proper alignment */
-    align-items: center;
+.mobile-menu {
+  display: none;
+}
 
-    @media (max-width: 600px) {
-      height: 30px; /* Scale logo down for smaller screens */
-    }
+@media (max-width: 768px) {
+  .full-menu {
+    display: none;
   }
 
-  /* Title styling */
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-
-    /* Center align when the screen size is small */
-    @media (max-width: 600px) {
-      font-size: 1.2rem;
-    }
-    @media (max-width: 400px) {
-      font-size: 1rem;
-      text-align: center;
-    }
-  }
-
-  /* Spacer to push buttons to the right */
-  .spacer {
-    flex: 1;
-  }
-
-  /* Button styling */
-  button {
-    font-size: 1rem;
-    color: white;
-    margin-left: 10px; /* Spacing between buttons */
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
-    }
-
-    @media (max-width: 600px) {
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 400px) {
-      font-size: 0.8rem;
-      padding: 4px 8px; /* Compact buttons */
-    }
-  }
-
-  /* For smaller screens (<400px), stack items vertically */
-  @media (max-width: 400px) {
-    flex-direction: column;
-    align-items: flex-start;
-
-    .spacer {
-      display: none; /* Remove spacer */
-    }
-
-    .title {
-      margin-bottom: 8px; /* Add space below the title */
-    }
-
-    button {
-      margin-left: 0;
-      margin-bottom: 5px; /* Space between stacked buttons */
-    }
+  .mobile-menu {
+    display: block;
   }
 }
