@@ -16,26 +16,13 @@
       justify-content: space-between;
       align-items: stretch;
       width: 100%;
-      
-      .mission-image {
-        width: 60%;  // First column takes 60% of the width
-        padding: 10px;  // Add padding around the image
-        
-        img {
-          width: 100%;  // Ensure the image takes full width of the container
-          height: 100%;  // Ensure the image takes full height of the container
-          object-fit: cover;  // Cover the area, maintaining aspect ratio
-        }
-      }
-  
       .message-column {
-        display: flex;
         justify-content: center;
         align-items: center;
 
         .message-content {
           text-align: center;
-          max-width: 600px;
+          max-width: 100%;
           margin: 0 auto;
         }
         
@@ -90,7 +77,7 @@
   width: 100%;
   max-width: 300px;
   height: auto;
-  border-radius: 10px;
+  border-radius: 50px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 

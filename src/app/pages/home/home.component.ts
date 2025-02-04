@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
   administrators = [
     { name: 'Shashi Abinav', role: 'Vice President', photo:'assets/Shashi.jpg' },
-    { name: 'Vipan Dogra', role: 'Secrtaray', photo: 'assets/Vipan.jpg' },
+    { name: 'Vipan Dogra', role: 'Sectrary', photo: 'assets/Vipan.jpg' },
     { name: 'Rajiv Kumar', role: 'Finance Sectrary', photo: 'assets/Rajiv.jpg' },
     { name: 'Atul Rana', role: 'Media Coordinator', photo: 'assets/Don.jpg' },
   ];
