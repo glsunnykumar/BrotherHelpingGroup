@@ -10,6 +10,8 @@ import { ContributionComponent } from "../contribution/contribution.component";
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { register } from 'swiper/element-bundle';
+import { MatDialog } from '@angular/material/dialog';
+import { MemberComponent } from '../member/member/member.component';
 
 @Component({
   selector: 'app-home',
@@ -67,13 +69,20 @@ export class HomeComponent implements OnInit {
   tasks$: Observable<any[]>;
 
   constructor(private firestore: Firestore ,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     const tasksCollection = collection(this.firestore, 'tasks');
     this.tasks$ = collectionData(tasksCollection, { idField: 'id' });
   }
   ngOnInit(): void {
     register();
+  }
+
+  openMemberDialog(): void {
+    this.dialog.open(MemberComponent, {
+      width: '400px',
+    });
   }
 
     // Navigate to team page

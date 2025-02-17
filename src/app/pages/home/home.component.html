@@ -28,19 +28,23 @@
         Empowering communities through collaboration and collective efforts.
         Join us today and make a difference!
       </p>
-      <button mat-raised-button color="primary">Become a Member</button>
+
+      <button mat-raised-button color="primary" (click)="openMemberDialog()">Become a Member</button>
 
       <!-- Flip Card Container -->
       <div class="flip-card">
         <div class="flip-card-inner">
           <!-- Front Side -->
           <div class="flip-card-front">
-            <img src="assets/Certificate.png" alt="Front Image" class="flip-img" />
-          </div>
-          <!-- Back Side -->
-          <div class="flip-card-back">
             <p class="flip-label">Registered Under Society Act</p>
           </div>
+       
+          <!-- Back Side -->
+          
+             <div class="flip-card-back">
+              <p class="flip-label">Registered Under Society Act</p>
+          </div>
+         
         </div>
       </div>
     </div>

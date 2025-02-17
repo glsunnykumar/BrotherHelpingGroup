@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Membership Form</h2>
+<mat-dialog-content class="dialog-content">
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" placeholder="Enter your name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Father's Name</mat-label>
+      <input matInput type="text" placeholder="Enter father's name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Address</mat-label>
+      <textarea matInput placeholder="Enter your address"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary">Submit</button>
+</mat-dialog-actions>
+
