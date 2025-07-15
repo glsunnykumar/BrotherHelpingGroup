@@ -10,7 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-member',
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     MatFormFieldModule, 
     MatDialogModule,
     MatButtonModule,
