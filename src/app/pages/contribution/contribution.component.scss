@@ -45,12 +45,13 @@ h1 {
   display: flex;
   justify-content: space-between; /* Distributes title & date evenly */
   align-items: center; /* Aligns them vertically */
-  width: 100%; /* Ensures full-width alignment */
+  flex-wrap: wrap; // prevents overflow on small screens
+  // width: 100%; /* Ensures full-width alignment */
   
   .title {
     font-weight: bold;
     font-size: 1.2rem;
-    flex: 1; /* Makes title take up equal space */
+    flex: 2; /* Makes title take up equal space */
     text-align: left; /* Aligns title to the left */
   }
 
