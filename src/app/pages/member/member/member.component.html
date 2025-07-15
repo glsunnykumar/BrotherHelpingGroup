@@ -16,6 +16,33 @@
       <mat-label>Address</mat-label>
       <textarea matInput placeholder="Enter your address"></textarea>
     </mat-form-field>
+
+    <div class="image-upload-row">
+      <div class="upload-field">
+        <label>Upload Adhar Card Image</label>
+        <input type="file" accept="image/*" (change)="onAdharSelected($event)" />
+        <div *ngIf="imageAdharError" class="error">{{ imageAdharError }}</div>
+      </div>
+
+      <div class="image-preview" *ngIf="previewAdharUrl && !imageAdharError">
+        <label>Preview:</label>
+        <img [src]="previewAdharUrl" alt="Blog Preview" />
+      </div>
+    </div>
+
+        <div class="image-upload-row">
+      <div class="upload-field">
+        <label>Upload Membership Receipt</label>
+        <input type="file" accept="image/*" (change)="onReceiptSelected($event)" />
+        <div *ngIf="imageReceiptError" class="error">{{ imageReceiptError }}</div>
+      </div>
+
+      <div class="image-preview" *ngIf="previewReceiptUrl && !imageReceiptError">
+        <label>Preview:</label>
+        <img [src]="imageReceiptError" alt="Blog Preview" />
+      </div>
+    </div>
+
   </form>
 </mat-dialog-content>
 
