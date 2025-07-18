@@ -1,7 +1,7 @@
 <h1 mat-dialog-title class="dialog-title">Membership Form</h1>
 
 <mat-dialog-content class="dialog-content">
-  <form class="membership-form">
+  <form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="membership-form">
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
       <input matInput type="text" placeholder="Enter your name" />
@@ -42,11 +42,11 @@
         <img [src]="imageReceiptError" alt="Blog Preview" />
       </div>
     </div>
-
-  </form>
-</mat-dialog-content>
-
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary">Submit</button>
+  <button mat-raised-button type="submit" color="primary">Submit</button>
 </mat-dialog-actions>
+  </form>
+  
+</mat-dialog-content>
+

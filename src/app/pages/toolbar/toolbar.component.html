@@ -2,27 +2,31 @@
   <a routerLink="/home">
     <img src="assets/BrotherLogo.jpg" alt="Self-Help Group Logo" class="logo" width="50" />
   </a>
-    <span class="title">Broter's-Helping Group</span>
-    <span class="spacer"></span>
-     
-      <!-- Full Menu (Visible on Large Screens) -->
-      <div class="full-menu">
-        <button mat-button routerLink="/home">
-          <mat-icon>home</mat-icon> Home
-        </button>
-        <button mat-button routerLink="/team">
-          <mat-icon>group</mat-icon> Team
-        </button>
-        <button mat-button routerLink="/contribution">
-          <mat-icon>volunteer_activism</mat-icon> Contribution
-        </button>
-        <button mat-button routerLink="/about-us">
-          <mat-icon>info</mat-icon> About Us
-        </button>
-      </div>
-      
+  <span class="title">Broter's-Helping Group</span>
+  <span class="spacer"></span>
 
-   <!-- Mobile Menu (Three Dots) -->
+  <!-- Full Menu (Visible on Large Screens) -->
+  <div class="full-menu">
+    <button mat-button routerLink="/home">
+      <mat-icon>home</mat-icon> Home
+    </button>
+    <button mat-button routerLink="/team">
+      <mat-icon>group</mat-icon> Team
+    </button>
+    <button mat-button routerLink="/contribution">
+      <mat-icon>volunteer_activism</mat-icon> Contribution
+    </button>
+    <button mat-button routerLink="/about-us">
+      <mat-icon>info</mat-icon> About Us
+    </button>
+    <button mat-button (click)="openLoginModal()" routerLink="/login">
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
+  </div>
+
+
+  <!-- Mobile Menu (Three Dots) -->
   <button mat-icon-button [matMenuTriggerFor]="menu" class="mobile-menu">
     <mat-icon>menu</mat-icon>
   </button>
@@ -40,10 +44,13 @@
     <button mat-menu-item routerLink="/about-us">
       <mat-icon>info</mat-icon> About Us
     </button>
+    <button mat-button (click)="openLoginModal()" routerLink="/login">
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
   </mat-menu>
-  
-   
-  </mat-toolbar>
-  <span class="spacer"></span>
-  <router-outlet></router-outlet>
-  
+
+
+</mat-toolbar>
+<span class="spacer"></span>
+<router-outlet></router-outlet>
