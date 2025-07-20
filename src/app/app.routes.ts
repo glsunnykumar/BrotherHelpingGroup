@@ -11,6 +11,12 @@ export const routes: Routes = [
   { path: 'contribution', component: ContributionComponent },
   { path: 'about-us', component: AboutUsComponent },
    { path: 'login', component: LoginComponent },
+    // ✅ Admin lazy-loaded standalone route
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.routes').then((m) => m.ADMIN_ROUTES),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
   ];
