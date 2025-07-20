@@ -1,0 +1,58 @@
+<div class="dashboard-container">
+  <div class="summary-cards">
+    <mat-card class="summary-card">
+      <mat-icon>event</mat-icon>
+      <div class="info">
+        <h3>{{ totalEnquiry() }}</h3>
+        <p>Total Members</p>
+      </div>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-icon>pending</mat-icon>
+      <div class="info">    
+        <h3>{{ pendingEnquiry() }}</h3>
+        <p>Pending Members</p>
+      </div>
+    </mat-card>
+
+    <!-- <mat-card class="summary-card">
+      <mat-icon>check_circle</mat-icon>
+      <div class="info">
+        <h3>{{ completedBookings() }}</h3>
+        <p>Completed Bookings</p>
+      </div>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-icon>attach_money</mat-icon>
+      <div class="info">
+        <h3>${{ totalRevenue() }}</h3>
+        <p>Total Revenue</p>
+      </div>
+    </mat-card> -->
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h3>Recent Members</h3>
+
+    <app-reusable-table
+  [data]="bokking"
+  [isLoading]="isLoading"
+  [columns]="[
+    { key: 'name', label: 'Name' },
+    { key: 'phone', label: 'Contact' },
+    { key: 'email', label: 'Email' }
+  ]"
+  [showActions]="true"
+  (edit)="openBokkingForm($event)"
+  (delete)="deleteBokking($event)"
+>
+  <!-- Optional custom cell template -->
+  <ng-template #price let-value="value">
+    ₹{{ value }}
+  </ng-template>
+</app-reusable-table>
+
+</div>

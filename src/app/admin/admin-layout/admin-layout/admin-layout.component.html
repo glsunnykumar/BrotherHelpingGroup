@@ -1,1 +1,25 @@
-<p>admin-layout works!</p>
+<mat-toolbar class="admin-toolbar">
+  <div class="sidebar-header">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <span>Admin Dashboard</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-sidenav-container class="admin-container">
+  <mat-sidenav 
+    #drawer 
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isCollapsed()"
+    (closedStart)="isCollapsed.set(true)"
+    (openedStart)="isCollapsed.set(false)">
+    <app-sidebar (sidebarToggle)="toggleSidebar()"></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

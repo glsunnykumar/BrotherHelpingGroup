@@ -1,0 +1,43 @@
+<ng-container *ngIf="isLoading; else tableContent">
+      <div class="spinner-wrapper">
+        
+      </div>
+    </ng-container>
+
+    <ng-template #tableContent>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.data.length > 0; else noData">
+
+        <!-- Dynamic Columns -->
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
+          <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
+          <td mat-cell *matCellDef="let row">
+            <ng-container *ngIf="customTemplates[column.key]; else defaultCell">
+              <ng-container *ngTemplateOutlet="customTemplates[column.key]; context: { value: row[column.key], row: row }"></ng-container>
+            </ng-container>
+            <ng-template #defaultCell>{{ row[column.key] }}</ng-template>
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container *ngIf="showActions" matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" matTooltip="Edit" (click)="edit.emit(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" matTooltip="Delete" (click)="delete.emit(row.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnKeys"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnKeys;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+      <ng-template #noData>
+        <div class="no-data">No data available.</div>
+      </ng-template>
+    </ng-template>

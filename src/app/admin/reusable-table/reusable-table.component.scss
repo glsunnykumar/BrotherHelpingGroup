@@ -1,0 +1,13 @@
+  .spinner-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 1.5rem;
+      color: #888;
+      font-style: italic;
+    }
