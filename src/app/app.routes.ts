@@ -4,6 +4,7 @@ import { TeamComponent } from './pages/team/team.component';
 import { ContributionComponent } from './pages/contribution/contribution.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.routes').then((m) => m.ADMIN_ROUTES),
+      canActivate :[authGuard]
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },

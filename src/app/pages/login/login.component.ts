@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { AuthService } from '../../services/auth/auth.service';
     MatCardModule,
     MatIconModule,
     MatDialogModule
+  
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -30,9 +32,10 @@ export class LoginComponent {
   signupForm: FormGroup;
 
 
-  private dialogRef = inject(MatDialogRef<LoginComponent>);
 
-  constructor(private fb: FormBuilder, private authService: AuthService
+  constructor(private fb: FormBuilder, private authService: AuthService,
+      private router:Router,
+      @Optional() private dialogRef?: MatDialogRef<LoginComponent>
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -52,7 +55,8 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       await this.authService.login(email, password);
-      this.dialogRef.close(); // Close modal after login
+      this.router.navigate(['/admin']); // ✅ use parentheses, not square brackets
+      this.closeModal();
     }
   }
 
@@ -64,6 +68,7 @@ export class LoginComponent {
 
 
   closeModal() {
+      if (this.dialogRef)
     this.dialogRef.close();
   }
 
