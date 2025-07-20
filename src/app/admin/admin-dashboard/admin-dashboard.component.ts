@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
+import { MemberService } from '../../services/member/member.service';
 // import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 // import { EnquireService } from '../../service/enquire/enquire.service';
 // import { EnquiryEditComponentComponent } from '../enquiry-edit/enquiry-edit-component/enquiry-edit-component.component';
@@ -35,13 +36,13 @@ import { ReusableTableComponent } from '../reusable-table/reusable-table.compone
   styleUrl: './admin-dashboard.component.scss'
 })
 export class AdminDashboardComponent {
-    totalEnquiry = signal(0);
-  pendingEnquiry = signal(0);
+    totalMember = signal(0);
+  pendingMember= signal(0);
   // completedBookings = signal(0);
   // totalRevenue = signal(0);
  // displayedColumns: string[] = ['name', 'date', 'status', 'actions'];
  // dataSource = new MatTableDataSource<any>();
-  bokking: any[] = [];
+  members: any[] = [];
   isLoading = true;
 
   recentBookings = signal<any[]>([]);
@@ -51,21 +52,21 @@ export class AdminDashboardComponent {
   constructor(
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
-    //private enquiryService: EnquireService
+    private memberService: MemberService
   ) {
     //this.fetchDashboardData();
-    this.fetchEnquiry();
+    this.fetchMembers();
   }
 
-  fetchEnquiry() {
-  //   this.enquiryService.getEnquiries().subscribe((data) => {
-  //   this.totalEnquiry.set(data.length);
-  //   this.bokking = data;
-  //     // Calculate pending count
-  // const pendingCount = data.filter(enquiry => enquiry.status === 'pending').length;
-  // this.pendingEnquiry.set(pendingCount);
-  //   this.isLoading = false;
-  // });
+  fetchMembers() {
+    this.memberService.getMembers().subscribe((data) => {
+    this.totalMember.set(data.length);
+    this.members = data;
+      // Calculate pending count
+  const pendingMember = data.filter(enquiry => enquiry.status === 'pending').length;
+  this.pendingMember.set(pendingMember);
+    this.isLoading = false;
+  });
   }
 
   openEditDialog(booking: any): void {

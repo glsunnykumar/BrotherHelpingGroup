@@ -24,6 +24,12 @@ export class MemberService {
     });
   }
 
+   getMembers(): Observable<any[]> {
+    return collectionData(this.memberCollection, {
+      idField: 'id',
+    }) as Observable<any[]>;
+  }
+
 
   
 

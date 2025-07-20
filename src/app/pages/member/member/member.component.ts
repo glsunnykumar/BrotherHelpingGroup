@@ -77,10 +77,15 @@ export class MemberComponent {
 
    onSubmit(){
     if (this.memberForm.invalid) return;
-
-    const memberData = this.memberForm.value;
+    
+    console.log('adding member data');
+    const memberData = {
+      ...this.memberForm.value,
+      
+      status :'pending'
+    };
        this.memberService.addMember(memberData);
-      this.snackBar.open('Blog added successfully!', 'Close', { duration: 3000 });
+      this.snackBar.open('Member added successfully!Please wait for admin approval', 'Close', { duration: 3000 });
   }
 
   onReceiptSelected(event: Event): void {
