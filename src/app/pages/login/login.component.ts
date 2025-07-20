@@ -56,20 +56,12 @@ export class LoginComponent {
     }
   }
 
-   async onSignup() {
-    const { email, password, displayName } = this.signupForm.value;
-    await this.authService.signupWithEmail(email!, password!, displayName!);
-    this.dialogRef.close();
-  }
+  
 
    toggleMode() {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  async signInWithGoogle() {
-    await this.authService.signInWithGoogle();
-    this.dialogRef.close();
-  }
 
   closeModal() {
     this.dialogRef.close();

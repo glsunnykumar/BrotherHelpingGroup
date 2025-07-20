@@ -8,7 +8,7 @@
   </div>
   <mat-card class="login-card">
    
-      <form [formGroup]="isLoginMode ? loginForm : signupForm" (ngSubmit)="isLoginMode ? login() : onSignup()">
+      <form [formGroup]="isLoginMode ? loginForm : signupForm" (ngSubmit)=" login()">
         <ng-container *ngIf="!isLoginMode">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Name</mat-label>
