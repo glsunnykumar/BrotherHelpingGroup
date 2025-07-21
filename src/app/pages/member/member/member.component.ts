@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -8,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MemberService } from '../../../services/member/member.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ImageUploadService } from '../../../services/image/image-upload.service';
+import { GlobalLoaderComponent } from "../../../shared/global-loader/global-loader.component";
 
 @Component({
   selector: 'app-member',
@@ -18,28 +25,38 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatButtonModule,
     MatInputModule,
     CommonModule,
-  ],
+    GlobalLoaderComponent
+],
   templateUrl: './member.component.html',
   styleUrl: './member.component.scss',
 })
-export class MemberComponent {     
-  memberForm :FormGroup;   
-  previewAdharUrl: string | ArrayBuffer | null = null;
+export class MemberComponent {
+  memberForm: FormGroup;
+  adharPreviewUrl: string | ArrayBuffer | null = null;
+  adharImageUrl: string | ArrayBuffer | null = null;
+  receiptPreviewUrl: string | ArrayBuffer | null = null;
+  imageUrl: string | ArrayBuffer | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
+  receiptImageUrl: string | ArrayBuffer | null = null;
   imageAdharError: string | null = null;
+  imageError: string | null = null;
   previewReceiptUrl: string | ArrayBuffer | null = null;
   imageReceiptError: string | null = null;
   maxFileSizeMB = 2;
-  
+   isLoading = false;
+
   constructor(
-      private fb: FormBuilder,
+    private fb: FormBuilder,
     private memberService: MemberService,
-      private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
+    private imageUploadService: ImageUploadService,
     public dialogRef: MatDialogRef<MemberComponent>
   ) {
-      this.memberForm = this.fb.group({
+    this.memberForm = this.fb.group({
       name: ['', Validators.required],
       fName: ['', Validators.required],
       address: ['', Validators.required],
+      previewAdharUrl: [''],
     });
   }
 
@@ -47,72 +64,104 @@ export class MemberComponent {
     this.dialogRef.close();
   }
 
-  onAdharSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
+  async onAdharSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
 
-    this.imageAdharError = null;
-    this.previewAdharUrl = null;
+    if (!fileInput.files || fileInput.files.length === 0) return;
 
-    if (file) {
-      const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-      const maxSize = this.maxFileSizeMB * 1024 * 1024;
+    const file = fileInput.files[0];
 
-      if (!allowedTypes.includes(file.type)) {
-        this.imageAdharError = 'Only JPG and PNG images are allowed.';
-        return;
-      }
+    // Show preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.adharPreviewUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+    // Upload to Firebase Storage
+    const path = `uploads/${Date.now()}_${file.name}`;
+    try {
+      const downloadUrl = await this.imageUploadService.uploadImage(file, path);
+      this.adharImageUrl = downloadUrl;
+      console.log('adhar File uploaded to firebase with url:', downloadUrl);
 
-      if (file.size > maxSize) {
-        this.imageAdharError = `File size should be less than ${this.maxFileSizeMB}MB.`;
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.previewAdharUrl = reader.result;
-      };
-      reader.readAsDataURL(file);
+      // Optional: Save downloadUrl to Firestore here
+    } catch (err) {
+      console.error('Upload failed:', err);
     }
   }
 
-   onSubmit(){
+  async onReceiptSelected(event: Event) {
+   const fileInput = event.target as HTMLInputElement;
+
+    if (!fileInput.files || fileInput.files.length === 0) return;
+
+    const file = fileInput.files[0];
+
+    // Show preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.receiptPreviewUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+    // Upload to Firebase Storage
+    const path = `uploads/${Date.now()}_${file.name}`;
+    try {
+      const downloadUrl = await this.imageUploadService.uploadImage(file, path);
+      this.receiptImageUrl = downloadUrl;
+      console.log('adhar File uploaded to firebase with url:', downloadUrl);
+
+      // Optional: Save downloadUrl to Firestore here
+    } catch (err) {
+      console.error('Upload failed:', err);
+    }
+  }
+
+  async onImageSelected(event:Event){
+    const fileInput = event.target as HTMLInputElement;
+
+    if (!fileInput.files || fileInput.files.length === 0) return;
+
+    const file = fileInput.files[0];
+
+    // Show preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+    // Upload to Firebase Storage
+    const path = `uploads/${Date.now()}_${file.name}`;
+    try {
+      const downloadUrl = await this.imageUploadService.uploadImage(file, path);
+      this.imageUrl = downloadUrl;
+      console.log('adhar File uploaded to firebase with url:', downloadUrl);
+
+      // Optional: Save downloadUrl to Firestore here
+    } catch (err) {
+      console.error('Upload failed:', err);
+    }
+  }
+
+  async onSubmit() {
     if (this.memberForm.invalid) return;
-    
-    console.log('adding member data');
+    this.isLoading =true;
     const memberData = {
       ...this.memberForm.value,
-      
-      status :'pending'
+      profileImage: this.imageUrl ?? null,
+      adharImage: this.adharImageUrl ?? null,
+      receiptImage: this.receiptImageUrl ?? null,
+      status: 'pending',
     };
-       this.memberService.addMember(memberData);
-      this.snackBar.open('Member added successfully!Please wait for admin approval', 'Close', { duration: 3000 });
+    await this.memberService
+      .addMember(memberData)
+      .then(() => this.dialogRef.close(true));
+    this.snackBar.open(
+      'Member added successfully!Please wait for admin approval',
+      'Close',
+      { duration: 3000 }
+    );
+    this.isLoading = false; 
   }
 
-  onReceiptSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
 
-    this.imageReceiptError = null;
-    this.previewReceiptUrl = null;
-
-    if (file) {
-      const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-      const maxSize = this.maxFileSizeMB * 1024 * 1024;
-
-      if (!allowedTypes.includes(file.type)) {
-        this.imageReceiptError = 'Only JPG and PNG images are allowed.';
-        return;
-      }
-
-      if (file.size > maxSize) {
-        this.imageReceiptError = `File size should be less than ${this.maxFileSizeMB}MB.`;
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.previewReceiptUrl = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 }
