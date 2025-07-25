@@ -1,54 +1,73 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MemberService } from '../../services/member/member.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-team',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule
+  ],
+
   templateUrl: './team.component.html',
   styleUrl: './team.component.scss'
 })
 export class TeamComponent {
-   // Expose Math to the template
-   Math = Math;
- // Array of team members
- teamMembers = Array.from({ length: 50 }, (_, i) => ({
-  name: `Member ${i + 1}`,
-  role: `Role ${i % 10 + 1}`, // Simulate multiple roles
-  photo: `https://i.pravatar.cc/150?img=${i + 1}` // Example random profile pictures
-}));
+    members: any[] = [];
+  filteredMembers: any[] = [];
+  searchTerm = '';
 
- // Filtered team members (for search functionality)
- filteredMembers = [...this.teamMembers];
+  pageSize = 4;
+  currentPage = 1;
 
- // Pagination variables
- currentPage = 1;
- pageSize = 20;
-
-  // Getter for paginated members
-  get paginatedMembers() {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    return this.filteredMembers.slice(startIndex, startIndex + this.pageSize);
+     constructor(private memberService: MemberService) {
+       this.memberService.getMembers().subscribe((data) => {
+      this.members = data;
+      this.applySearch();
+    });
+     }
+ get startIndex(): number {
+    return (this.currentPage - 1) * this.pageSize;
   }
 
-   // Search functionality
-   search(query: string) {
-    const lowerQuery = query.toLowerCase();
-    this.filteredMembers = this.teamMembers.filter(member =>
-      member.name.toLowerCase().includes(lowerQuery)
-    );
-    this.currentPage = 1; // Reset to the first page after search
+  get endIndex(): number {
+    return this.startIndex + this.pageSize;
   }
 
-  // Pagination controls
-  nextPage() {
-    if (this.currentPage * this.pageSize < this.filteredMembers.length) {
+  get totalPages(): number {
+    return Math.ceil(this.filteredMembers.length / this.pageSize);
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
       this.currentPage++;
     }
   }
 
-  previousPage() {
+  prevPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
+
+  applySearch(): void {
+    this.currentPage = 1;
+    this.filteredMembers = this.members.filter(member =>
+      (member.name?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+       member.address?.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    );
+  }
+
+  // Add this if you want real-time search:
+  ngOnChanges() {
+    this.applySearch();
+  }  
+
+
 }
