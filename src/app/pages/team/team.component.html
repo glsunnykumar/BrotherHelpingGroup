@@ -15,9 +15,19 @@
   </div>
 
   <!-- Pagination Controls -->
-  <div class="pagination-controls">
-    <button mat-stroked-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-    <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button mat-stroked-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  <!-- Pagination Controls & Page Size -->
+  <div class="pagination-wrapper">
+    <div class="pagination-controls">
+      <button mat-stroked-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button mat-stroked-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+
+    <mat-form-field appearance="outline" class="page-size-box">
+      <mat-label>Page Size</mat-label>
+      <mat-select [(ngModel)]="pageSize" (selectionChange)="applySearch()">
+        <mat-option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </div>

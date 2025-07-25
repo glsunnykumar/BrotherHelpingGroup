@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-team',
@@ -14,7 +15,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule 
+    MatInputModule,
+    MatSelectModule
   ],
 
   templateUrl: './team.component.html',
@@ -25,8 +27,10 @@ export class TeamComponent {
   filteredMembers: any[] = [];
   searchTerm = '';
 
-  pageSize = 4;
   currentPage = 1;
+  pageSize = 10;
+  pageSizeOptions = [5, 10, 20];
+  totalPages = 1;
 
      constructor(private memberService: MemberService) {
        this.memberService.getMembers().subscribe((data) => {
@@ -42,9 +46,7 @@ export class TeamComponent {
     return this.startIndex + this.pageSize;
   }
 
-  get totalPages(): number {
-    return Math.ceil(this.filteredMembers.length / this.pageSize);
-  }
+
 
   nextPage(): void {
     if (this.currentPage < this.totalPages) {

@@ -1,59 +1,74 @@
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
-.team-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1rem;
-}
-
-.team-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  border: 2px solid #ddd;
-}
-
-.team-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.team-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.team-address {
-  font-size: 0.9rem;
-  color: #666;
-}
-
 .search-pagination-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
-.search-box {
-  width: 300px;
-  margin-bottom: 1rem;
-}
-
-.pagination-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 1rem;
-  margin-top: 1rem;
+  padding: 16px;
+
+  .search-box {
+    width: 100%;
+    max-width: 400px;
+    align-self: flex-start;
+  }
+
+  .team-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .team-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .team-info {
+      margin-top: 0.5rem;
+
+      .team-name {
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .team-address {
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+      }
+    }
+  }
+
+  .pagination-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .page-size-box {
+      width: 150px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .team-photo {
+      height: 150px;
+    }
+  }
 }
