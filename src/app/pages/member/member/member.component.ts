@@ -64,6 +64,7 @@ export class MemberComponent {
       name: ['', Validators.required],
       fName: ['', Validators.required],
       address: ['', Validators.required],
+      contact: ['', Validators.required],
       membership: [null, Validators.required]
     });
   }

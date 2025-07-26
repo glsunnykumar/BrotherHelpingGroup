@@ -30,6 +30,12 @@ export class MemberService {
     }) as Observable<any[]>;
   }
 
+    // Delete a service
+  deleteMember(id: string) {
+    const serviceDoc = doc(this.firestore, `member/${id}`);
+    return deleteDoc(serviceDoc);
+  }
+
 
   
 

@@ -42,12 +42,12 @@
   [isLoading]="isLoading"
   [columns]="[
     { key: 'name', label: 'Name' },
-    { key: 'phone', label: 'Contact' },
-    { key: 'email', label: 'Email' }
+    { key: 'fName', label: 'Father Name' },
+    { key: 'contact', label: 'Contact' }
   ]"
   [showActions]="true"
-  (edit)="openBokkingForm($event)"
-  (delete)="deleteBokking($event)"
+  (edit)="openMemberForm($event)"
+  (delete)="deleteMember($event)"
 >
   <!-- Optional custom cell template -->
   <ng-template #price let-value="value">

@@ -103,7 +103,7 @@ export class AdminDashboardComponent {
     // });
   }
 
-  openBokkingForm(enquiry?: any) {
+  openMemberForm(enquiry?: any) {
   //   console.log('blog data is', enquiry.id);
   //    const enquiryId = enquiry.id;
 
@@ -121,10 +121,10 @@ export class AdminDashboardComponent {
     // this.router.navigate(['/admin/add-blog', blog.id]);
   }
 
-  deleteBokking(id: string) {
+  deleteMember(id: string) {
     console.log('blog data is', id);
     if (confirm('Are you sure you want to delete this hoel?')) {
-      // this.blogService.deleteBlog(id).then(() => this.fetchBlogs());
+       this.memberService.deleteMember(id).then(() => this.fetchMembers());
     }
   }
 
