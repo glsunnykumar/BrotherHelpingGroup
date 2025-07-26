@@ -12,6 +12,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 import { MemberService } from '../../services/member/member.service';
+import { UpdateMemberStatusComponent } from '../update-member-status/update-member-status.component';
 // import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 // import { EnquireService } from '../../service/enquire/enquire.service';
 // import { EnquiryEditComponentComponent } from '../enquiry-edit/enquiry-edit-component/enquiry-edit-component.component';
@@ -103,22 +104,18 @@ export class AdminDashboardComponent {
     // });
   }
 
-  openMemberForm(enquiry?: any) {
-  //   console.log('blog data is', enquiry.id);
-  //    const enquiryId = enquiry.id;
+  openMemberForm(member:any) {
+ const dialogRef = this.dialog.open(UpdateMemberStatusComponent, {
+    width: '400px',
+    data: member
+  });
 
-  //   const dialogRef = this.dialog.open(EnquiryEditComponentComponent, {
-  //   width: '450px',
-  //   data: { id: enquiryId }
-  // });
-
-  // dialogRef.afterClosed().subscribe((updated) => {
-  //   if (updated) {
-  //     // Re-fetch enquiries if needed
-  //   }
-  // });
-
-    // this.router.navigate(['/admin/add-blog', blog.id]);
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === 'updated') {
+      // Refresh list or show snackbar
+      this.fetchMembers(); // example refresh method
+    }
+  });
   }
 
   deleteMember(id: string) {

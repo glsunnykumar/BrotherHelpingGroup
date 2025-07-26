@@ -30,6 +30,11 @@ export class MemberService {
     }) as Observable<any[]>;
   }
 
+  updateStatus(memberId: string, newStatus: string): Promise<void> {
+    const memberDocRef = doc(this.memberCollection, memberId);
+    return updateDoc(memberDocRef, { status: newStatus });
+  }
+
     // Delete a service
   deleteMember(id: string) {
     const serviceDoc = doc(this.firestore, `member/${id}`);

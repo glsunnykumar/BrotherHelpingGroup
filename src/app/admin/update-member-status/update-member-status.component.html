@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Update Member Status</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Select Status</mat-label>
+    <mat-select [(value)]="status">
+      <mat-option value="Active">✅ Active</mat-option>
+      <mat-option value="Inactive">❌ Inactive</mat-option>
+      <mat-option value="Pending">🕒 Pending</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="updateStatus()">Update</button>
+</mat-dialog-actions>
+
