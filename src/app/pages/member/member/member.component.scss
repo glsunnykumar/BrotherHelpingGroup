@@ -7,6 +7,7 @@
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
+
 .membership-form {
   display: flex;
   flex-direction: column;
@@ -35,15 +36,16 @@
         margin-bottom: 4px;
       }
     }
+
     .profile-preview-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;         // 👈 Makes the image circular
-  object-fit: cover;          // 👈 Ensures the image fills the circle
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-}
+      width: 120px;
+      height: 120px;
+      border-radius: 50%; // 👈 Makes the image circular
+      object-fit: cover; // 👈 Ensures the image fills the circle
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    }
 
     .image-preview {
       flex: 1 1 200px;
@@ -68,6 +70,19 @@
       }
     }
   }
+
+  .membership-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  mat-radio-button {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+}
+
+
 
   .error {
     color: red;

@@ -32,9 +32,17 @@
       <mat-label>Address</mat-label>
       <textarea matInput formControlName="address" placeholder="Enter your address"></textarea>
     </mat-form-field>
+    
+    <mat-label>Select Membership</mat-label>
+<mat-radio-group formControlName="membership" class="membership-row">
+  <mat-radio-button *ngFor="let amount of membershipOptions" [value]="amount">
+    ₹{{ amount }}
+  </mat-radio-button>
+</mat-radio-group>
+
 
     <!-- Adhar Upload -->
-    <div class="image-upload-row">
+    <!-- <div class="image-upload-row">
       <div class="upload-field">
         <label>Upload Aadhar Card Image</label>
         <input type="file" accept="image/*" (change)="onAdharSelected($event)" />
@@ -45,10 +53,10 @@
         <label>Preview:</label>
         <img class="preview-img" [src]="adharPreviewUrl" alt="Aadhar Preview" />
       </div>
-    </div>
+    </div> -->
 
     <!-- Receipt Upload -->
-    <div class="image-upload-row">
+    <!-- <div class="image-upload-row">
       <div class="upload-field">
         <label>Upload Membership Receipt</label>
         <input type="file" accept="image/*" (change)="onReceiptSelected($event)" />
@@ -59,7 +67,7 @@
         <label>Preview:</label>
         <img class="preview-img" [src]="receiptPreviewUrl" alt="Receipt Preview" />
       </div>
-    </div>
+    </div> -->
 
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close (click)="dialogRef.close()">Cancel</button>

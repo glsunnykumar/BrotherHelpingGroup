@@ -26,10 +26,10 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
     .team-photo {
-     width: 200px;       // or any fixed size (must be square)
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
+      width: 200px; // or any fixed size (must be square)
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .team-info {
@@ -65,11 +65,12 @@
       width: 150px;
     }
   }
+
   mat-card-actions {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: flex-end;
-}
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
 
 
   @media (max-width: 600px) {

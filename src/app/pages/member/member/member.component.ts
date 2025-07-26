@@ -15,6 +15,7 @@ import { MemberService } from '../../../services/member/member.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageUploadService } from '../../../services/image/image-upload.service';
 import { GlobalLoaderComponent } from "../../../shared/global-loader/global-loader.component";
+import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
   selector: 'app-member',
@@ -25,6 +26,7 @@ import { GlobalLoaderComponent } from "../../../shared/global-loader/global-load
     MatButtonModule,
     MatInputModule,
     CommonModule,
+    MatRadioModule,
     GlobalLoaderComponent
 ],
   templateUrl: './member.component.html',
@@ -43,6 +45,7 @@ export class MemberComponent {
   previewReceiptUrl: string | ArrayBuffer | null = null;
   imageReceiptError: string | null = null;
   maxFileSizeMB = 2;
+  membershipOptions: number[] = [300, 500, 1000];
    isLoading = false;
 
   constructor(
@@ -56,7 +59,7 @@ export class MemberComponent {
       name: ['', Validators.required],
       fName: ['', Validators.required],
       address: ['', Validators.required],
-      previewAdharUrl: [''],
+      membership: [null, Validators.required]
     });
   }
 
@@ -148,8 +151,6 @@ export class MemberComponent {
     const memberData = {
       ...this.memberForm.value,
       profileImage: this.imageUrl ?? null,
-      adharImage: this.adharImageUrl ?? null,
-      receiptImage: this.receiptImageUrl ?? null,
       status: 'pending',
     };
     await this.memberService
