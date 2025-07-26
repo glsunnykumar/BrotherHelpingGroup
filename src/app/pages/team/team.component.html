@@ -1,16 +1,20 @@
-<div class="search-pagination-wrapper">
+<app-global-loader *ngIf="isLoading" [loading]="isLoading"></app-global-loader>
+<div class="search-pagination-wrapper" *ngIf="!isLoading">
   <mat-form-field appearance="outline" class="search-box">
     <mat-label>Search Member</mat-label>
     <input matInput [(ngModel)]="searchTerm"  placeholder="Enter name or address" />
   </mat-form-field>
 
   <div class="team-grid">
-    <mat-card class="team-card" *ngFor="let member of filteredMembers | slice: startIndex:endIndex">
-      <img [src]="member.adharImage" alt="{{ member.name }}" class="team-photo" />
+    <mat-card class="team-card" *ngFor="let member of filteredMembers | slice: startIndex:endIndex" >
+      <img [src]="member.profileImage" alt="{{ member.name }}" class="team-photo" />
       <mat-card-content class="team-info">
         <h3 class="team-name">{{ member.name }}</h3>
         <p class="team-address">{{ member.address }}</p>
       </mat-card-content>
+       <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="openMemberModal(member)">View Details</button>
+  </mat-card-actions>
     </mat-card>
   </div>
 

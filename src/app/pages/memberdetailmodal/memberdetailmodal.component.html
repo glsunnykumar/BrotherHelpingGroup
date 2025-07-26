@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Member Details</h2>
+<mat-dialog-content>
+  <img [src]="member.adharImage" alt="{{ member.name }}" class="modal-image" />
+  <p><strong>Name:</strong> {{ member.name }}</p>
+  <p><strong>Address:</strong> {{ member.address }}</p>
+  <p><strong>Date of Joining:</strong> {{ member.date }}</p>
+  <!-- Add more fields here as required -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="close()">Close</button>
+</mat-dialog-actions>
