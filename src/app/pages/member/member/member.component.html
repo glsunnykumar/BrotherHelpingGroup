@@ -35,9 +35,9 @@
     
     <mat-label>Select Membership</mat-label>
 <mat-radio-group formControlName="membership" class="membership-row">
-  <mat-radio-button *ngFor="let amount of membershipOptions" [value]="amount">
-    ₹{{ amount }}
-  </mat-radio-button>
+    <mat-radio-button *ngFor="let plan of membershipPlans" [value]="plan.amount">
+        <span class="emoji">{{ plan.icon }}</span> ₹{{ plan.amount }}
+      </mat-radio-button>
 </mat-radio-group>
 
 

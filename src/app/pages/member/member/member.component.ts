@@ -46,6 +46,11 @@ export class MemberComponent {
   imageReceiptError: string | null = null;
   maxFileSizeMB = 2;
   membershipOptions: number[] = [300, 500, 1000];
+  membershipPlans = [
+  { amount: 300, icon: '💼' },
+  { amount: 500, icon: '⭐' },
+  { amount: 1000, icon: '👑' }
+];
    isLoading = false;
 
   constructor(

@@ -48,6 +48,28 @@
     }
   }
 
+  .member-type {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2e7d32; /* A pleasant green */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 8px;
+
+  .amount {
+    font-weight: 600;
+    color: #1b5e20; // darker shade
+  }
+
+  .period {
+    font-style: italic;
+    color: #555;
+  }
+}
+
+
   .pagination-wrapper {
     display: flex;
     flex-direction: column;

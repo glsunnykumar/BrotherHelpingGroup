@@ -11,6 +11,10 @@
       <mat-card-content class="team-info">
         <h3 class="team-name">{{ member.name }}</h3>
         <p class="team-address">{{ member.address }}</p>
+        <p class="member-type">
+           {{ getMembershipEmoji(member.membership) }} 
+   <span class="amount">{{ member.membership }} ₹</span> <span class="period">per month</span>
+</p>
       </mat-card-content>
        <mat-card-actions align="end">
     <button mat-stroked-button color="primary" (click)="openMemberModal(member)">View Details</button>

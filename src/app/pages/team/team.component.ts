@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MemberdetailmodalComponent } from '../memberdetailmodal/memberdetailmodal.component';
-import { GlobalLoaderComponent } from "../../shared/global-loader/global-loader.component";
+import { GlobalLoaderComponent } from '../../shared/global-loader/global-loader.component';
 
 @Component({
   selector: 'app-team',
@@ -21,8 +21,8 @@ import { GlobalLoaderComponent } from "../../shared/global-loader/global-loader.
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
-    GlobalLoaderComponent
-],
+    GlobalLoaderComponent,
+  ],
 
   templateUrl: './team.component.html',
   styleUrl: './team.component.scss',
@@ -39,28 +39,32 @@ export class TeamComponent {
   isLoading: boolean = false;
 
   constructor(private memberService: MemberService, private dialog: MatDialog) {
-    
-   this.getAllMembers();
+    this.getAllMembers();
   }
 
- getAllMembers() {
-  this.isLoading = true;
+  getAllMembers() {
+    this.isLoading = true;
 
-  this.memberService.getMembers().subscribe({
-    next: (data) => {
-      console.log('loading members');
-      this.members = data;
-      this.filteredMembers = data;
-       this.isLoading = false;
-        console.log('loading members loading false');
-    },
-    error: (err) => {
-      console.error('Failed to load members', err);
-      this.isLoading = false;
-    }
-  });
-}
+    this.memberService.getMembers().subscribe({
+      next: (data) => {
+        console.log('loading members');
+        this.members = data;
+        this.filteredMembers = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to load members', err);
+        this.isLoading = false;
+      },
+    });
+  }
 
+  getMembershipEmoji(membership: number): string {
+    if (membership === 300) return '🪙';
+    if (membership === 500) return '💎';
+    if (membership === 1000) return '👑';
+    return '✨';
+  }
 
   openMemberModal(member: any): void {
     this.dialog.open(MemberdetailmodalComponent, {
