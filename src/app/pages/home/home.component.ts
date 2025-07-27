@@ -47,6 +47,14 @@ export class HomeComponent implements OnInit {
       date: new Date('2025-01-10'),
     },
   ];
+
+  contributors = [
+  { name: 'W/o Lt Dina Nath', amount: 21000 },
+  { name: 'Sh Atul Gupta', amount: 11000 },
+  { name: 'Nikhil Kumar', amount: 6000 },
+  { name: 'Neha Gupta', amount: 2000 },
+  { name: 'Rajesh Kumar', amount: 1500 }
+];
   
 
   administrators = [

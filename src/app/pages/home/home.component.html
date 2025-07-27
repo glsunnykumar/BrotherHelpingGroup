@@ -59,29 +59,37 @@
 
 
 <section class="mission-section">
-  <mat-card class="mission-card">
-  <div class="mission-grid">
-
-      <!-- Right Column: Message Column -->
-      <div class="message-column">
-        <mat-card>
-        <div class="message-content">
-          <img src="assets/president.jpg" alt="Admin Photo" class="admin-photo" />
-          <h3 class="admin-name">Sh Pankaj Kumar</h3>
+  <mat-card>
+    <!-- Left Column -->
+    <div class="message-column">
+      <div class="message-content">
+        <img src="assets/president.png" alt="Admin Photo" class="admin-photo" />
+        <h3 class="admin-name">Sh Pankaj Kumar</h3>
         <p class="admin-designation">Message From President</p>
         <p class="admin-message">
-          "Our mission is to help the poor and deprived in times of need. We dedicate ourselves to providing support during illness, assisting with the marriage of poor daughters, organizing blood donation camps, and distributing food and clothes to the underprivileged. Through compassion and collective effort, we aim to create a positive impact in the lives of those who need it most."
+          "Our mission is to help the poor and deprived in times of need. We dedicate ourselves to providing support
+          during illness, assisting with the marriage of poor daughters, organizing blood donation camps, and
+          distributing food and clothes to the underprivileged..."
         </p>
-        </div>
-      </mat-card>
       </div>
-
-
-
-   
-  </div>
-</mat-card>
+    </div>
+       <!-- Divider -->
+    <div class="divider"></div>
+    <!-- Right Column -->
+    <div class="contributor-column">
+      <mat-card class="mat-card-custom">
+        <h3>Top Contributors</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let c of contributors; index as i">
+            <span>{{ i + 1 }}. {{ c.name }}</span>
+            <span class="amount">₹{{ c.amount }}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+  </mat-card>
 </section>
+
 
 
 <section class="team-section">
