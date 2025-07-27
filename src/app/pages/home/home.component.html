@@ -77,15 +77,19 @@
     <div class="divider"></div>
     <!-- Right Column -->
     <div class="contributor-column">
-      <mat-card class="mat-card-custom">
-        <h3>Top Contributors</h3>
-        <mat-list>
-          <mat-list-item *ngFor="let c of contributors; index as i">
-            <span>{{ i + 1 }}. {{ c.name }}</span>
-            <span class="amount">₹{{ c.amount }}</span>
-          </mat-list-item>
-        </mat-list>
-      </mat-card>
+      <mat-card class="top-contributors-card">
+  <mat-card-title>Top Contributors</mat-card-title>
+  
+  <div class="contributor-list-wrapper">
+    <ul class="contributor-list">
+      <li *ngFor="let c of contributors; let i = index">
+        <span>{{ i + 1 }}. {{ c.name }}</span>
+        <span class="amount">₹{{ c.amount }}</span>
+      </li>
+    </ul>
+  </div>
+</mat-card>
+
     </div>
   </mat-card>
 </section>
@@ -166,7 +170,9 @@
         </mat-card>
       </div> -->
   </section>
-
+<a class="whatsapp-float" href="https://chat.whatsapp.com/JNqzwMTkqn68cMjaq3VNii?mode=ac_t" target="_blank" aria-label="Join WhatsApp Group">
+  <mat-icon class="fa-brands fa-whatsapp"></mat-icon>
+</a>
 
 
 </div>
