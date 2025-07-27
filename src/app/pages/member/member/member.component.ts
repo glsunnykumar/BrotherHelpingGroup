@@ -64,7 +64,7 @@ export class MemberComponent {
       name: ['', Validators.required],
       fName: ['', Validators.required],
       address: ['', Validators.required],
-      contact: ['', Validators.required],
+      contactNumber: ['', Validators.required],
       membership: [null, Validators.required]
     });
   }
@@ -159,15 +159,23 @@ export class MemberComponent {
       profileImage: this.imageUrl ?? null,
       status: 'pending',
     };
-    await this.memberService
-      .addMember(memberData)
-      .then(() => this.dialogRef.close(true));
+  
+     try {
+    await this.memberService.addMember(memberData);
+    this.dialogRef.close(true);
     this.snackBar.open(
-      'Member added successfully!Please wait for admin approval',
+      'Member added successfully! Please wait for admin approval',
       'Close',
       { duration: 3000 }
     );
-    this.isLoading = false; 
+  } catch (error) {
+    console.error('Error adding member:', error);
+    this.snackBar.open('Failed to add member. Try again.', 'Close', {
+      duration: 3000,
+    });
+  } finally {
+    this.isLoading = false;
+  }
   }
 
 
