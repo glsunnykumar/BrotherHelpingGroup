@@ -44,7 +44,6 @@ export class TeamComponent {
 
   getAllMembers() {
     this.isLoading = true;
-
     this.memberService.getActiveMembers().subscribe({
       next: (data) => {
         console.log('loading members');
