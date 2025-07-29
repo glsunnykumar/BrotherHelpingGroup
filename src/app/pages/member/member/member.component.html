@@ -1,7 +1,7 @@
 <h1 mat-dialog-title class="dialog-title">Membership Form</h1>
 
 <mat-dialog-content class="dialog-content">
-    <app-global-loader [ju8hy7 x]="isLoading" />
+    <app-global-loader [loading]="isLoading" />
   <form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="membership-form">
 
     <mat-form-field appearance="outline">
@@ -14,6 +14,7 @@
       <div class="upload-field">
         <label>Upload Image</label>
         <input type="file" accept="image/*" (change)="onImageSelected($event)" />
+
         <div *ngIf="imageError" class="error">{{ imageError }}</div>
       </div>
 

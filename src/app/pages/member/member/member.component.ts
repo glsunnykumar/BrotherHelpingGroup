@@ -14,8 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MemberService } from '../../../services/member/member.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageUploadService } from '../../../services/image/image-upload.service';
-import { GlobalLoaderComponent } from "../../../shared/global-loader/global-loader.component";
-import {MatRadioModule} from '@angular/material/radio';
+import { GlobalLoaderComponent } from '../../../shared/global-loader/global-loader.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-member',
@@ -27,8 +27,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatInputModule,
     CommonModule,
     MatRadioModule,
-    GlobalLoaderComponent
-],
+    GlobalLoaderComponent,
+  ],
   templateUrl: './member.component.html',
   styleUrl: './member.component.scss',
 })
@@ -47,11 +47,11 @@ export class MemberComponent {
   maxFileSizeMB = 2;
   membershipOptions: number[] = [300, 500, 1000];
   membershipPlans = [
-  { amount: 300, icon: '💼' },
-  { amount: 500, icon: '⭐' },
-  { amount: 1000, icon: '👑' }
-];
-   isLoading = false;
+    { amount: 300, icon: '💼' },
+    { amount: 500, icon: '⭐' },
+    { amount: 1000, icon: '👑' },
+  ];
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -65,7 +65,7 @@ export class MemberComponent {
       fName: ['', Validators.required],
       address: ['', Validators.required],
       contactNumber: ['', Validators.required],
-      membership: [null, Validators.required]
+      membership: [null, Validators.required],
     });
   }
 
@@ -100,7 +100,7 @@ export class MemberComponent {
   }
 
   async onReceiptSelected(event: Event) {
-   const fileInput = event.target as HTMLInputElement;
+    const fileInput = event.target as HTMLInputElement;
 
     if (!fileInput.files || fileInput.files.length === 0) return;
 
@@ -125,7 +125,7 @@ export class MemberComponent {
     }
   }
 
-  async onImageSelected(event:Event){
+  async onImageSelected(event: Event) {
     const fileInput = event.target as HTMLInputElement;
 
     if (!fileInput.files || fileInput.files.length === 0) return;
@@ -153,30 +153,28 @@ export class MemberComponent {
 
   async onSubmit() {
     if (this.memberForm.invalid) return;
-    this.isLoading =true;
+    this.isLoading = true;
     const memberData = {
       ...this.memberForm.value,
       profileImage: this.imageUrl ?? null,
       status: 'pending',
     };
-  
-     try {
-    await this.memberService.addMember(memberData);
-    this.dialogRef.close(true);
-    this.snackBar.open(
-      'Member added successfully! Please wait for admin approval',
-      'Close',
-      { duration: 3000 }
-    );
-  } catch (error) {
-    console.error('Error adding member:', error);
-    this.snackBar.open('Failed to add member. Try again.', 'Close', {
-      duration: 3000,
-    });
-  } finally {
-    this.isLoading = false;
-  }
-  }
 
-
+    try {
+      await this.memberService.addMember(memberData);
+      this.dialogRef.close(true);
+      this.snackBar.open(
+        'Member added successfully! Please wait for admin approval',
+        'Close',
+        { duration: 3000 }
+      );
+    } catch (error) {
+      console.error('Error adding member:', error);
+      this.snackBar.open('Failed to add member. Try again.', 'Close', {
+        duration: 3000,
+      });
+    } finally {
+      this.isLoading = false;
+    }
+  }
 }

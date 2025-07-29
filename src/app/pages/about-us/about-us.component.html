@@ -1,5 +1,6 @@
 <div class="contact-us-container">
     <!-- Left Column: Group Contact Details -->
+      <app-global-loader [loading]="isLoading" />
     <div class="contact-details">
       <h2>Contact Our Group</h2>
       <div class="contact-card">
@@ -53,7 +54,7 @@
   
         <!-- Identification Proof Upload -->
         <div class="file-upload">
-          <label>Upload Identification Proof:</label>
+          <label>Upload Identification Proof (Image only):</label>
           <input
             type="file"
             (change)="onFileSelected($event)"

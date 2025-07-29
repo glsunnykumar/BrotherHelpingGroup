@@ -10,15 +10,26 @@ export class MemberService {
 
    private firestore: Firestore = inject(Firestore);
    private memberCollection ;
+   private requestCollection;
 
   constructor() {
     this.memberCollection = collection(this.firestore, 'member');
+    this.requestCollection = collection(this.firestore, 'request');
   }
 
   // Create Service
    addMember(member: any) {
     return addDoc(this.memberCollection, {
       ...member,
+      createdAt: new Date(),
+      isActive: true
+    });
+  }
+
+   // Create Service
+   addRequest(request: any) {
+    return addDoc(this.memberCollection, {
+      ...request,
       createdAt: new Date(),
       isActive: true
     });
