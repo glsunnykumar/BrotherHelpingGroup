@@ -13,6 +13,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 import { MemberService } from '../../services/member/member.service';
 import { UpdateMemberStatusComponent } from '../update-member-status/update-member-status.component';
+import { deleteObject, getStorage, ref } from '@angular/fire/storage';
 // import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 // import { EnquireService } from '../../service/enquire/enquire.service';
 // import { EnquiryEditComponentComponent } from '../enquiry-edit/enquiry-edit-component/enquiry-edit-component.component';
@@ -118,11 +119,47 @@ export class AdminDashboardComponent {
   });
   }
 
-  deleteMember(id: string) {
-    console.log('blog data is', id);
-    if (confirm('Are you sure you want to delete this hoel?')) {
-       this.memberService.deleteMember(id).then(() => this.fetchMembers());
-    }
+
+  deleteMember(member: any) {
+    console.log('member are ',member);
+  if (confirm('Are you sure you want to delete this member?')) {
+    const imagePath = this.extractStoragePathFromUrl(member.profileImage);
+
+    this.memberService.deleteMember(member.id).then(() => {
+      console.log('Firestore member deleted');
+      if (imagePath) {
+        this.deleteProfileImage(imagePath);
+      }
+      this.fetchMembers(); // Refresh list
+    });
   }
+}
+
+extractStoragePathFromUrl(url: string): string | null {
+  try {
+    const startIndex = url.indexOf('/o/') + 3;
+    const endIndex = url.indexOf('?');
+    const encodedPath = url.substring(startIndex, endIndex);
+    return decodeURIComponent(encodedPath);
+  } catch (err) {
+    console.error('Failed to extract image path:', err);
+    return null;
+  }
+}
+
+deleteProfileImage(imagePath: string) {
+  const storage = getStorage();
+  const fileRef = ref(storage, imagePath);
+
+  deleteObject(fileRef)
+    .then(() => {
+      console.log('Image deleted from Firebase Storage');
+    })
+    .catch((error) => {
+      console.error('Error deleting image:', error);
+    });
+}
+
+
 
 }
