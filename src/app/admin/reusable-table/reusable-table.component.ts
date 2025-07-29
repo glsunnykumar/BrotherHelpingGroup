@@ -50,6 +50,7 @@ export class ReusableTableComponent {
   customTemplates: Record<string, TemplateRef<any>> = {};
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('member data received',this.data);
     this.dataSource.data = this.data || [];
 
     // Set dynamic columns + optional action column

@@ -65,8 +65,8 @@ export class AdminDashboardComponent {
     this.totalMember.set(data.length);
     this.members = data;
       // Calculate pending count
-  const pendingMember = data.filter(enquiry => enquiry.status === 'pending').length;
-  this.pendingMember.set(pendingMember);
+  const pendingMember1 = data.filter(enquiry => enquiry.status === 'pending').length;
+  this.pendingMember.set(pendingMember1);
     this.isLoading = false;
   });
   }

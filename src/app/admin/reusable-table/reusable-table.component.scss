@@ -11,3 +11,11 @@
       color: #888;
       font-style: italic;
     }
+
+    .active-row {
+  background-color: #d0f5d3 !important; /* light green */
+}
+
+.pending-row {
+  background-color: #f8d0d0 !important; /* light red */
+}
