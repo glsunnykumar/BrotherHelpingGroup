@@ -69,7 +69,7 @@ export class AboutUsComponent {
         status: 'pending',
       };
       try {
-        await this.memberService.addRequest(formData);
+       await this.memberService.addRequest(formData);
         this.snackBar.open(
           'Request added successfully! Please wait for admin approval',
           'Close',

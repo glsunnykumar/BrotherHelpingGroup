@@ -52,7 +52,7 @@ export class MemberService {
   }
 
   getRequests(): Observable<any[]> {
-    return collectionData(this.memberCollection, {
+    return collectionData(this.requestCollection, {
       idField: 'id',
     }) as Observable<any[]>;
   }
@@ -72,9 +72,21 @@ export class MemberService {
     return updateDoc(memberDocRef, { status: newStatus });
   }
 
+  updateRequestStatus(requestId: string, newStatus: string): Promise<void> {
+    const requestDocRef = doc(this.requestCollection, requestId);
+    return updateDoc(requestDocRef, { status: newStatus });
+  }
+
   // Delete a service
   deleteMember(id: string) {
     const serviceDoc = doc(this.firestore, `member/${id}`);
+    return deleteDoc(serviceDoc);
+  }
+
+  
+  // Delete a service
+  deleteRequest(id: string) {
+    const serviceDoc = doc(this.firestore, `request/${id}`);
     return deleteDoc(serviceDoc);
   }
 

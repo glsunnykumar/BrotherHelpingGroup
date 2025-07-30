@@ -12,8 +12,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 import { MemberService } from '../../services/member/member.service';
-import { UpdateMemberStatusComponent } from '../update-member-status/update-member-status.component';
+
 import { deleteObject, getStorage, ref } from '@angular/fire/storage';
+import { UpdateRequestStatusComponent } from '../update-request-status/update-request-status.component';
 @Component({
   selector: 'app-user-request',
   imports: [
@@ -65,7 +66,7 @@ export class UserRequestComponent {
   }
 
   openRequestForm(member: any) {
-    const dialogRef = this.dialog.open(UpdateMemberStatusComponent, {
+    const dialogRef = this.dialog.open(UpdateRequestStatusComponent, {
       width: '400px',
       data: member,
     });
@@ -78,15 +79,15 @@ export class UserRequestComponent {
     });
   }
 
-  deleteRequest(member: any) {
-    console.log('member are ', member);
+  deleteRequest(request: any) {
+    console.log('member are ', request);
     if (confirm('Are you sure you want to delete this member?')) {
       const imagePath = this.memberService.extractStoragePathFromUrl(
-        member.profileImage
+        request.requestFile
+
       );
 
-      this.memberService.deleteMember(member.id).then(() => {
-        console.log('Firestore member deleted');
+      this.memberService.deleteRequest(request.id).then(() => {
         if (imagePath) {
           this.memberService.deleteProfileImage(imagePath);
         }
