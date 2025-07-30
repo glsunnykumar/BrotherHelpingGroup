@@ -72,9 +72,9 @@ export class MemberService {
     return updateDoc(memberDocRef, { status: newStatus });
   }
 
-  updateRequestStatus(requestId: string, newStatus: string): Promise<void> {
+  updateRequestStatus(requestId: string, data: { status: string; comment: string }): Promise<void> {
     const requestDocRef = doc(this.requestCollection, requestId);
-    return updateDoc(requestDocRef, { status: newStatus });
+    return updateDoc(requestDocRef,data);
   }
 
   // Delete a service

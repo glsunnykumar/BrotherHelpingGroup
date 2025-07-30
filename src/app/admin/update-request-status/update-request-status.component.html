@@ -1,39 +1,42 @@
 <h2 mat-dialog-title>Update Request Status</h2>
 
 <mat-dialog-content>
+  <app-global-loader [loading]="isLoading"></app-global-loader>
+  <!-- Reactive Form Start -->
+  <form [formGroup]="statusForm" (ngSubmit)="onSubmitStatusUpdate()">
 
-  <mat-form-field appearance="fill" style="width: 100%;">
-  <mat-label>Created At</mat-label>
-  <input
-    matInput
-    [value]="formatCreatedAt(data?.createdAt)"
-    readonly>
-</mat-form-field>
+    <!-- Read-only: Created At -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Created At</mat-label>
+      <input matInput [value]="formatCreatedAt(data?.createdAt)" readonly />
+    </mat-form-field>
 
-<!-- Details (read‑only) -->
-<mat-form-field appearance="fill" style="width: 100%;">
-  <mat-label>Details</mat-label>
-  <textarea
-    matInput
-    rows="3"
-    [value]="data.details || ''"
-    readonly>
-  </textarea>
-</mat-form-field>
+    <!-- Read-only: Details -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Details</mat-label>
+      <textarea matInput rows="3" [value]="data.details || ''" readonly></textarea>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill" style="width: 100%;">
-    <mat-label>Select Status</mat-label>
-    <mat-select [(value)]="status">
-      <mat-option value="Active">✅ Approve</mat-option>
-      <mat-option value="Inactive">❌ Inactive</mat-option>
-      <mat-option value="Pending">🕒 Pending</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <!-- Status Select -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Select Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="Active">✅ Approve</mat-option>
+        <mat-option value="Inactive">❌ Inactive</mat-option>
+        <mat-option value="Pending">🕒 Pending</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Comment Textarea -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Comment</mat-label>
+      <textarea matInput rows="3" formControlName="comment" placeholder="Reason for status change..."></textarea>
+    </mat-form-field>
+
+    <mat-dialog-actions align="end">
+      <button mat-button type="button" (click)="close()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="statusForm.invalid">Update</button>
+    </mat-dialog-actions>
+
+  </form>
 </mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-button (click)="close()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="updateStatus()">Update</button>
-</mat-dialog-actions>
-
-
