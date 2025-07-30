@@ -4,6 +4,22 @@
     background-color: #3f51b5;
     color: #fff;
 
+   .visitor-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 4px;
+
+    mat-icon {
+      font-size: 18px;
+      color: #ffc107; // gold eye color
+      margin-right: 4px;
+    }
+  }
+
+
     .social-icons {
       display: flex;
       justify-content: center;
