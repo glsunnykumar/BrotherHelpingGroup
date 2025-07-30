@@ -13,144 +13,132 @@
    
   </section> -->
 
-<!-- Hero Section -->
-<section class="hero-section">
-  <div class="column left-column">
-    <!-- Left Column -->
-    <img src="assets/QR.jpeg" alt="Certificate" class="responsive-img" />
-  </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="column left-column">
+      <!-- Left Column -->
+      <img src="assets/QR.jpeg" alt="Certificate" class="responsive-img" />
+    </div>
 
-  <div class="column center-column">
-    <!-- Center Column -->
-    <div class="hero-content">
-      <h1>Welcome to the Brother's-Helping Group</h1>
-      <p>
-        Empowering communities through collaboration and collective efforts.
-        Join us today and make a difference!
-      </p>
+    <div class="column center-column">
+      <!-- Center Column -->
+      <div class="hero-content">
+        <h1>Welcome to the Brother's-Helping Group</h1>
+        <p>
+          Empowering communities through collaboration and collective efforts.
+          Join us today and make a difference!
+        </p>
 
-      <button mat-raised-button color="primary" (click)="openMemberDialog()">Become a Member</button>
+        <button mat-raised-button color="primary" (click)="openMemberDialog()">Become a Member</button>
 
-      <!-- Flip Card Container -->
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <!-- Front Side -->
-          <div class="flip-card-front">
-            <p class="flip-label">Registered Under Society Act</p>
-            <h3>Reg No :- HPCD-12269</h3>
-          </div>
-       
-          <!-- Back Side -->
-          
-             <div class="flip-card-back">
+        <!-- Flip Card Container -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- Front Side -->
+            <div class="flip-card-front">
               <p class="flip-label">Registered Under Society Act</p>
-               <h3>Reg No :- HPCD-12269</h3>
+              <h3>Reg No :- HPCD-12269</h3>
+            </div>
+
+            <!-- Back Side -->
+
+            <div class="flip-card-back">
+              <p class="flip-label">Registered Under Society Act</p>
+              <h3>Reg No :- HPCD-12269</h3>
+            </div>
+
           </div>
-         
         </div>
       </div>
     </div>
-  </div>
-  <div class="column right-column">
-    <!-- Right Column -->
-    <img src="assets/QR.jpeg" alt="QR Code" class="responsive-img" />
-  </div>
-</section>
+    <div class="column right-column">
+      <!-- Right Column -->
+      <img src="assets/QR.jpeg" alt="QR Code" class="responsive-img" />
+    </div>
+  </section>
 
 
-<section class="mission-section">
-  <mat-card>
-    <!-- Left Column -->
-    <div class="message-column">
-      <div class="message-content">
-        <img src="assets/president.png" alt="Admin Photo" class="admin-photo" />
-        <h3 class="admin-name">Sh Pankaj Kumar</h3>
-        <p class="admin-designation">Message From President</p>
-        <p class="admin-message">
-          "Our mission is to help the poor and deprived in times of need. We dedicate ourselves to providing support
-          during illness, assisting with the marriage of poor daughters, organizing blood donation camps, and
-          distributing food and clothes to the underprivileged..."
-        </p>
+  <section class="mission-section">
+    <mat-card>
+      <!-- Left Column -->
+      <div class="message-column">
+        <div class="message-content">
+          <img src="assets/president.png" alt="Admin Photo" class="admin-photo" />
+          <h3 class="admin-name">Sh Pankaj Kumar</h3>
+          <p class="admin-designation">Message From President</p>
+          <p class="admin-message">
+            "Our mission is to help the poor and deprived in times of need. We dedicate ourselves to providing support
+            during illness, assisting with the marriage of poor daughters, organizing blood donation camps, and
+            distributing food and clothes to the underprivileged..."
+          </p>
+        </div>
       </div>
-    </div>
-       <!-- Divider -->
-    <div class="divider"></div>
-    <!-- Right Column -->
-    <div class="contributor-column">
-      <mat-card class="top-contributors-card">
-  <mat-card-title>Top Contributors</mat-card-title>
-  
-  <div class="contributor-list-wrapper">
-    <ul class="contributor-list">
-      <li *ngFor="let c of contributors; let i = index">
-        <span>{{ i + 1 }}. {{ c.name }}</span>
-        <span class="amount">₹{{ c.amount }}</span>
-      </li>
-    </ul>
-  </div>
-</mat-card>
+      <!-- Divider -->
+      <div class="divider"></div>
+      <!-- Right Column -->
+      <div class="contributor-column">
+        <mat-card class="top-contributors-card">
+          <mat-card-title>Top Contributors</mat-card-title>
 
-    </div>
-  </mat-card>
-</section>
+          <div class="contributor-list-wrapper">
+            <ul class="contributor-list">
+              <li *ngFor="let c of contributors; let i = index">
+                <span>{{ i + 1 }}. {{ c.name }}</span>
+                <span class="amount">₹{{ c.amount }}</span>
+              </li>
+            </ul>
+          </div>
+        </mat-card>
 
-
-
-<section class="team-section">
-  <mat-card class="mission-card">
-  <h2>Meet Our Amazing Team</h2>
-  <p class="team-description">
-    Our team is dedicated to making a difference by serving society with passion and commitment. 
-    Each member contributes their skills and efforts to bring about meaningful change in our community.
-  </p>
-  <div class="team-container">
-    <!-- First Row: Four Key Members -->
-    <div class="team-grid">
-      <div class="team-member" *ngFor="let member of administrators">
-        <img [src]="member.photo" alt="{{ member.name }}" class="team-photo" />
-        <h3 class="team-name">{{ member.name }}</h3>
-        <p class="team-designation">{{ member.role }}</p>
       </div>
-    </div>
+    </mat-card>
+  </section>
 
-    <!-- Second Row: Carousel for Other Members -->
-    <mat-card class="carousel-container">
-       <!-- Second Row: Carousel for Other Members -->
-       <div class="carousel-wrapper">
-        <swiper-container
-          slides-per-view="2"
-          space-between="20"
-          loop="true"
-          navigation="true"
-          pagination="true"
-          autoplay="true"          
-          autoplay-delay="3000"    
-          breakpoints='{
+
+
+  <section class="team-section">
+    <mat-card class="mission-card">
+      <h2>Meet Our Amazing Team</h2>
+      <p class="team-description">
+        Our team is dedicated to making a difference by serving society with passion and commitment.
+        Each member contributes their skills and efforts to bring about meaningful change in our community.
+      </p>
+      <div class="team-container">
+        <!-- First Row: Four Key Members -->
+        <div class="team-grid">
+          <div class="team-member" *ngFor="let member of administrators">
+            <img [src]="member.photo" alt="{{ member.name }}" class="team-photo" />
+            <h3 class="team-name">{{ member.name }}</h3>
+            <p class="team-designation">{{ member.role }}</p>
+          </div>
+        </div>
+
+        <!-- Second Row: Carousel for Other Members -->
+        <mat-card class="carousel-container">
+          <!-- Second Row: Carousel for Other Members -->
+          <div class="carousel-wrapper">
+            <swiper-container slides-per-view="2" space-between="20" loop="true" navigation="true" pagination="true"
+              autoplay="true" autoplay-delay="3000" breakpoints='{
             "640": { "slidesPerView": 1 },
             "768": { "slidesPerView": 2 },
             "1024": { "slidesPerView": 3 }
-          }'
-        >
-          <swiper-slide *ngFor="let member of topMembers">
-            <div class="carousel-card">
-              <img
-                [src]="member.photo"
-                alt="{{ member.name }}"
-                class="carousel-photo"
-              />
-              <h3 class="carousel-name">{{ member.name }}</h3>
-              <p class="carousel-designation">{{ member.role }}</p>
-            </div>
-          </swiper-slide>
-        </swiper-container>
+          }'>
+              <swiper-slide *ngFor="let member of topMembers">
+                <div class="carousel-card">
+                  <img [src]="member.photo" alt="{{ member.name }}" class="carousel-photo" />
+                  <h3 class="carousel-name">{{ member.name }}</h3>
+                  <p class="carousel-designation">{{ member.role }}</p>
+                </div>
+              </swiper-slide>
+            </swiper-container>
+          </div>
+        </mat-card>
+        <div class="viewMorebutton">
+          <button mat-raised-button (click)="navigateToTeam()">View More</button>
+        </div>
       </div>
     </mat-card>
-    <div class="viewMorebutton">
-    <button mat-raised-button  (click)="navigateToTeam()">View More</button>
-  </div>
-  </div>
-</mat-card>
-</section>
+  </section>
 
   <!-- Tasks Section -->
   <section class="tasks-section">
@@ -170,9 +158,10 @@
         </mat-card>
       </div> -->
   </section>
-<a class="whatsapp-float" href="https://chat.whatsapp.com/JNqzwMTkqn68cMjaq3VNii?mode=ac_t" target="_blank" aria-label="Join WhatsApp Group">
-  <mat-icon class="fa-brands fa-whatsapp"></mat-icon>
-</a>
+  <a class="whatsapp-float" href="https://chat.whatsapp.com/JNqzwMTkqn68cMjaq3VNii?mode=ac_t" target="_blank"
+    aria-label="Join WhatsApp Group">
+    <mat-icon class="fa-brands fa-whatsapp"></mat-icon>
+  </a>
 
 
 </div>

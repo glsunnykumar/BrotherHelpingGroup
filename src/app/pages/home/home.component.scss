@@ -8,26 +8,62 @@
 
   
 
+
 .mission-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  padding: 1rem;
 
   mat-card {
-    flex: 1 1 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
+    gap: 2rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .message-column,
+  .contributor-column {
+    flex: 1 1 45%;
+    min-width: 280px;
+  }
+
+  .message-content {
+    text-align: center;
+
+    .admin-photo {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      display: block;
+      border: 4px solid #ccc;
+    }
+
+    .admin-name {
+      margin: 10px 0 0;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .admin-designation {
+      color: #3f51b5;
+      font-weight: 500;
+      margin: 4px 0;
+    }
+
+    .admin-message {
+      font-size: 14px;
+      text-align: justify;
+      margin-top: 10px;
+    }
   }
 
 .divider {
+  flex-shrink: 0;
   width: 4px;
-  height: 100%;
-  margin: 0 20px;
-  border-radius: 10px;
+  height: auto;
+  min-height: 100%;
   background: linear-gradient(
     to bottom,
     #ff3cac,
@@ -38,8 +74,114 @@
   );
   background-size: 100% 400%;
   animation: bounce 1.5s ease-in-out infinite, gradientShift 6s linear infinite;
+  border-radius: 10px;
+  align-self: stretch; // <--- ensure it stretches in flex layout
+  margin: 0 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 4px;
+    min-height: 4px;
+    background: linear-gradient(
+      to right,
+      #ff3cac,
+      #784ba0,
+      #2b86c5,
+      #00c9ff,
+      #92fe9d
+    );
+    background-size: 400% 100%;
+    margin: 20px 0;
+  }
 }
 
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+
+  .top-contributors-card {
+    background: #f0f8ff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-height: 320px;
+    display: flex;
+    flex-direction: column;
+
+    mat-card-title {
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .contributor-list-wrapper {
+      overflow: hidden;
+      height: 220px;
+    }
+
+    .contributor-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      animation: scroll-up 10s linear infinite;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        font-size: 15px;
+        border-bottom: 1px dashed #ccc;
+
+        .amount {
+          font-weight: bold;
+          color: green;
+        }
+      }
+    }
+  }
+
+  /* Responsive: Stack columns on small screens */
+  @media (max-width: 768px) {
+    mat-card {
+      flex-direction: column;
+    }
+
+    .divider {
+      display: none;
+    }
+
+    .message-column,
+    .contributor-column {
+      flex: 1 1 100%;
+    }
+
+    .top-contributors-card {
+      max-height: none;
+    }
+
+    .contributor-list-wrapper {
+      height: auto;
+    }
+  }
+}
+
+/* Animations */
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
@@ -58,62 +200,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .divider {
-    display: none;
-  }
-}
-
-
-  .message-column, .contributor-column {
-    flex: 1;
-    min-width: 300px;
-
-
-    .top-contributors-card {
-  background: #f0f8ff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-height: 300px;
-  display: flex;
-  flex-direction: column;
-}
-
-mat-card-title {
-  font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.contributor-list-wrapper {
-  overflow: hidden;
-  flex: 1;
-  position: relative;
-  height: 200px;
-}
-
-.contributor-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  animation: scroll-up 10s linear infinite;
-}
-
-.contributor-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-  font-size: 15px;
-  border-bottom: 1px dashed #ccc;
-}
-
-.amount {
-  font-weight: bold;
-  color: green;
-}
-
 @keyframes scroll-up {
   0% {
     transform: translateY(0%);
@@ -122,67 +208,6 @@ mat-card-title {
     transform: translateY(-50%);
   }
 }
-
-@media (max-width: 768px) {
-  .top-contributors-card {
-    max-height: 100%;
-  }
-  .contributor-list-wrapper {
-    height: 150px;
-  }
-}
-
-  }
-
-  .message-content {
-    text-align: center;
-  }
-
-  .admin-photo {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    display: block;
-    border: 4px solid #ccc;
-  }
-
-  .admin-name {
-    margin: 10px 0 0;
-    font-weight: bold;
-  }
-
-  .admin-message {
-    font-size: 14px;
-    text-align: justify;
-    margin-top: 10px;
-  }
-
-  .mat-card-custom {
-    padding: 10px;
-    background-color: #f0f8ff;
-  }
-
-  mat-list-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 0;
-  }
-
-  .amount {
-    font-weight: bold;
-    color: green;
-  }
-
-  @media (max-width: 768px) {
-    .mission-section mat-card {
-      flex-direction: column;
-    }
-  }
-}
-
-
 
 
  /* Hero Section */
