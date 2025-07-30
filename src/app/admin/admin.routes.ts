@@ -20,5 +20,12 @@ export const ADMIN_ROUTES: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
+       {
+        path: 'request',
+        loadComponent: () =>
+          import('./user-request/user-request.component').then(
+            (m) => m.UserRequestComponent
+          ),
+      },
     ]
     }]

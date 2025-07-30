@@ -12,6 +12,7 @@ import { ImageUploadService } from '../../services/image/image-upload.service';
 import { MemberService } from '../../services/member/member.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalLoaderComponent } from "../../shared/global-loader/global-loader.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about-us',
@@ -29,6 +30,7 @@ export class AboutUsComponent {
     private fb: FormBuilder,
     private imageUploadService: ImageUploadService,
     private memberService: MemberService,
+    private router: Router,
     private snackBar: MatSnackBar
   ) {
     this.helpRequestForm = this.fb.group({
@@ -46,13 +48,6 @@ export class AboutUsComponent {
 
     const file = fileInput.files[0];
 
-    // Show preview
-    // const reader = new FileReader();
-    // reader.onload = () => {
-    //   this.previewUrl = reader.result as string;
-    // };
-    // reader.readAsDataURL(file);
-    // Upload to Firebase Storage
     const path = `uploads/${Date.now()}_${file.name}`;
     try {
       const downloadUrl = await this.imageUploadService.uploadImage(file, path);
@@ -71,6 +66,7 @@ export class AboutUsComponent {
       const formData = {
         ...this.helpRequestForm.value,
         requestFile: this.imageUrl ?? null,
+        status: 'pending',
       };
       try {
         await this.memberService.addRequest(formData);
@@ -79,6 +75,7 @@ export class AboutUsComponent {
           'Close',
           { duration: 3000 }
         );
+        this.router.navigate(['/home']);
       } catch (error) {
         console.error('Error adding member:', error);
         this.snackBar.open('Failed to add member. Try again.', 'Close', {

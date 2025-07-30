@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   contributors = [
   { name: 'W/o Lt Dina Nath', amount: 21000 },
   { name: 'Sh Atul Gupta', amount: 11000 },
-  { name: 'Nikhil Kumar', amount: 6000 },
+  { name: 'Karmagroup Staff', amount: 9100 },
   { name: 'Neha Gupta', amount: 2000 },
   { name: 'Rajesh Kumar', amount: 1500 }
 ];
