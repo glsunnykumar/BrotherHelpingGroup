@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { register } from 'swiper/element-bundle';
 import { MatDialog } from '@angular/material/dialog';
 import { MemberComponent } from '../member/member/member.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -93,6 +94,15 @@ export class HomeComponent implements OnInit {
       width: '400px',
     });
   }
+
+   openLoginModal() {
+      this.dialog.open(LoginComponent, {
+        width: '100%',
+        maxWidth: '400px', // controls horizontal scroll
+        disableClose: false,
+        autoFocus: false,
+      });
+    }
 
     // Navigate to team page
     navigateToTeam() {
