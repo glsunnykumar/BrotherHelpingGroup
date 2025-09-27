@@ -1,26 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MemberComponent } from '../../pages/member/member/member.component';
 import { MatButtonModule } from '@angular/material/button';
+import { ReusableTableComponent } from "../reusable-table/reusable-table.component";
+import { Router } from '@angular/router';
+import { MemberService } from '../../services/member/member.service';
 
 @Component({
   selector: 'app-member',
   imports: [
     MatIconModule,
-    MatTableModule ,
-    MatButtonModule
-  ],
+    MatTableModule,
+    MatButtonModule,
+    ReusableTableComponent
+],
   templateUrl: './member.component.html',
   styleUrl: './member.component.scss'
 })
 export class AddMemberComponent {
 
-   members: any[] = [];
+  members: any[] = [];
+  isLoading = true;
   displayedColumns: string[] = ['profile', 'name', 'fName', 'contactNumber', 'membership', 'actions'];
+   private router = inject(Router);
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private memberService: MemberService,
+    private dialog: MatDialog) {
+      this.getAllMembers();
+
+    }
+
+      getAllMembers() {
+    this.isLoading = true;
+    this.memberService.getActiveMembers().subscribe({
+      next: (data) => {
+        console.log('loading members');
+        this.members = data;
+       // this.filteredMembers = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to load members', err);
+        this.isLoading = false;
+      },
+    });
+  }
 
   openMemberDialog(member?: any) {
     const dialogRef = this.dialog.open(MemberComponent, {
@@ -40,6 +66,24 @@ export class AddMemberComponent {
         }
       }
     });
+  }
+
+   openServiceForm(blog?: any) {
+    this.router.navigate(['/admin/add-service', blog.id]);
+  }
+
+   openMemberForm(blog?: any) {
+    this.router.navigate(['/admin/add-member', blog.id]);
+  }
+
+
+     deleteService(member: any) {
+    if (!confirm('Are you sure you want to delete this service?')) return;
+
+    // await this.serviceService.deleteService(service.id!, service.imageUrl);
+    // this.snackBar.open('Service deleted successfully!', 'Close', {
+    //   duration: 3000,
+    // });
   }
 
     deleteMember(member: any) {

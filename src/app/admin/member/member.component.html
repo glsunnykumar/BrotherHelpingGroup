@@ -7,6 +7,28 @@
   </button>
 
   <!-- Member List Table -->
+
+        <app-reusable-table
+  [data]="members"
+  [isLoading]="isLoading"
+  [columns]="[
+    { key: 'name', label: 'Name' },
+    { key: 'fName', label: 'Father Name' },
+    { key: 'membership', label: 'Membership' }
+  ]"
+  [showActions]="true"
+  (edit)="openServiceForm($event)"
+  (delete)="deleteService($event)"
+>
+  <!-- Optional custom cell template -->
+  <ng-template #price let-value="value">
+    ₹{{ value }}
+  </ng-template>
+</app-reusable-table>
+
+
+
+
   <table mat-table [dataSource]="members" class="mat-elevation-z8 member-table">
 
     <!-- Profile Image -->
