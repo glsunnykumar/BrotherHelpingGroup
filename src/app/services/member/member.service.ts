@@ -36,6 +36,14 @@ export class MemberService {
     });
   }
 
+
+    // Update existing member
+  async updateMember(id: string, memberData: any) {
+    const memberDocRef = doc(this.firestore, `member/${id}`);
+    return await updateDoc(memberDocRef, memberData);
+  }
+
+
   // Create Service
   addRequest(request: any) {
     return addDoc(this.requestCollection, {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -58,7 +58,8 @@ export class MemberComponent {
     private memberService: MemberService,
     private snackBar: MatSnackBar,
     private imageUploadService: ImageUploadService,
-    public dialogRef: MatDialogRef<MemberComponent>
+    public dialogRef: MatDialogRef<MemberComponent>,
+     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.memberForm = this.fb.group({
       name: ['', Validators.required],
@@ -68,6 +69,29 @@ export class MemberComponent {
       membership: [null, Validators.required],
     });
   }
+
+  ngOnInit(): void {
+  if (this.data && this.data.member) {
+    const member = this.data.member;
+
+    console.log('The Detail of the member is' , member);
+
+    // Patch values into form
+    this.memberForm.patchValue({
+      name: member.name,
+      fName: member.fName,
+      address: member.address,
+      contactNumber: member.contactNumber,
+      membership: member.membership,
+    });
+
+    // Also keep existing image URLs for preview
+    this.imageUrl = member.profileImage || null;
+      this.previewUrl = member.profileImage || null;
+    this.adharImageUrl = member.adharImage || null;
+    this.receiptImageUrl = member.receiptImage || null;
+  }
+}
 
   closeDialog(): void {
     this.dialogRef.close();
@@ -161,13 +185,27 @@ export class MemberComponent {
     };
 
     try {
-      await this.memberService.addMember(memberData);
+
+        if (this.data && this.data.member) {
+           // 🔹 EDIT MODE
+      await this.memberService.updateMember(this.data.member.id, memberData);
+      this.dialogRef.close(memberData);
+      this.snackBar.open('Member updated successfully!', 'Close', {
+        duration: 3000,
+      });
+        }
+        else{
+                await this.memberService.addMember(memberData);
       this.dialogRef.close(true);
       this.snackBar.open(
         'Member added successfully! Please wait for admin approval',
         'Close',
         { duration: 3000 }
       );
+
+        }
+
+
     } catch (error) {
       console.error('Error adding member:', error);
       this.snackBar.open('Failed to add member. Try again.', 'Close', {
