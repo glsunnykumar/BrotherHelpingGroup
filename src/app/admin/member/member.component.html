@@ -8,26 +8,6 @@
 
   <!-- Member List Table -->
 
-        <app-reusable-table
-  [data]="members"
-  [isLoading]="isLoading"
-  [columns]="[
-    { key: 'name', label: 'Name' },
-    { key: 'fName', label: 'Father Name' },
-    { key: 'membership', label: 'Membership' }
-  ]"
-  [showActions]="true"
-  (edit)="openServiceForm($event)"
-  (delete)="deleteService($event)"
->
-  <!-- Optional custom cell template -->
-  <ng-template #price let-value="value">
-    ₹{{ value }}
-  </ng-template>
-</app-reusable-table>
-
-
-
 
   <table mat-table [dataSource]="members" class="mat-elevation-z8 member-table">
 
@@ -67,7 +47,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let member">
-        <button mat-icon-button color="primary" (click)="openMemberDialog(member)">
+        <button mat-icon-button color="primary" (click)="openMemberEditDialog(member.id)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="warn" (click)="deleteMember(member)">
