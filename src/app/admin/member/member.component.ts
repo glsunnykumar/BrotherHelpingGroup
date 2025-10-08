@@ -6,13 +6,17 @@ import { MemberComponent } from '../../pages/member/member/member.component';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { MemberService } from '../../services/member/member.service';
+import { MatDividerModule } from '@angular/material/divider';
+import { ReusableTableComponent } from "../reusable-table/reusable-table.component";
 
 @Component({
   selector: 'app-member',
   imports: [
     MatIconModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule,
+    ReusableTableComponent
 ],
   templateUrl: './member.component.html',
   styleUrl: './member.component.scss'
