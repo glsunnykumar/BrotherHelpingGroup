@@ -27,13 +27,27 @@ export const ADMIN_ROUTES: Routes = [
             (m) => m.UserRequestComponent
           ),
       },
-
-       {
+ {
         path: 'member',
         loadComponent: () =>
           import('./member/member.component').then(
             (m) => m.AddMemberComponent
           ),
       },
+
+       {
+        path: 'contribution',
+        loadComponent: () =>
+          import('./contribution-dialog/contribution-dialog.component').then(
+            (m) => m.ContributionDialogComponent
+          ),
+      },
+        {
+        path: 'contribution-list',
+        loadComponent: () =>
+          import('./contribution-list/contribution-list.component').then(
+            (m) => m.ContributionListComponent
+          ),
+      }
     ]
     }]

@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>
+  {{ data?.contribution ? 'Edit Contribution' : 'Add Contribution' }}
+</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="contributionForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contributor Name</mat-label>
+      <input matInput formControlName="contributorName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Amount</mat-label>
+      <input type="number" matInput formControlName="amount" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date</mat-label>
+      <input type="date" matInput formControlName="date" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notes"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>

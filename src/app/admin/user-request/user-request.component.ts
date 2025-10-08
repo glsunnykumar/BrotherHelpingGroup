@@ -48,6 +48,7 @@ export class UserRequestComponent {
     private breakpointObserver: BreakpointObserver,
     private memberService: MemberService
   ) {
+    console.log('fetching the request');
     //this.fetchDashboardData();
     this.fetchRequests();
   }

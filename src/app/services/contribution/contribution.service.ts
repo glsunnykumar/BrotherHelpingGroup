@@ -1,20 +1,29 @@
 import { inject, Injectable } from '@angular/core';
-import { Firestore, collection, doc, addDoc, updateDoc, deleteDoc, getDoc, collectionData } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  getDoc,
+  collectionData,
+} from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
 import { Contribution } from '../../models/contribution';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContributionService {
-   private firestore: Firestore = inject(Firestore);
+  private firestore: Firestore = inject(Firestore);
   private contributionCollection;
   constructor() {
-      this.contributionCollection = collection(this.firestore, 'contributions');
-   }
+    this.contributionCollection = collection(this.firestore, 'contributions');
+  }
 
-    addContribution(data: Contribution) {
+  addContribution(data: Contribution) {
     return addDoc(this.contributionCollection, data);
   }
 
@@ -33,7 +42,9 @@ export class ContributionService {
     return getDoc(ref);
   }
 
-   getContributions(): Observable<Contribution[]> {
-    return collectionData(this.contributionCollection, { idField: 'id' }) as Observable<Contribution[]>;
+  getContributions(): Observable<Contribution[]> {
+    return collectionData(this.contributionCollection, {
+      idField: 'id',
+    }) as Observable<Contribution[]>;
   }
 }
