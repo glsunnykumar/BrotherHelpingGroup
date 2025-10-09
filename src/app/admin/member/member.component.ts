@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { MemberService } from '../../services/member/member.service';
 import { MatDividerModule } from '@angular/material/divider';
-import { ReusableTableComponent } from "../reusable-table/reusable-table.component";
+import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 
 @Component({
   selector: 'app-member',
@@ -16,31 +16,35 @@ import { ReusableTableComponent } from "../reusable-table/reusable-table.compone
     MatTableModule,
     MatButtonModule,
     MatDividerModule,
-    ReusableTableComponent
-],
+    ReusableTableComponent,
+  ],
   templateUrl: './member.component.html',
-  styleUrl: './member.component.scss'
+  styleUrl: './member.component.scss',
 })
 export class AddMemberComponent {
-
   members: any[] = [];
   isLoading = true;
-  displayedColumns: string[] = ['profile', 'name', 'fName', 'contactNumber', 'membership', 'actions'];
-   private router = inject(Router);
+  displayedColumns: string[] = [
+    'profile',
+    'name',
+    'fName',
+    'contactNumber',
+    'membership',
+    'actions',
+  ];
+  private router = inject(Router);
 
-  constructor(private memberService: MemberService,
-    private dialog: MatDialog) {
-      this.getAllMembers();
+  constructor(private memberService: MemberService, private dialog: MatDialog) {
+    this.getAllMembers();
+  }
 
-    }
-
-      getAllMembers() {
+  getAllMembers() {
     this.isLoading = true;
     this.memberService.getActiveMembers().subscribe({
       next: (data) => {
         console.log('loading members');
         this.members = data;
-       // this.filteredMembers = data;
+        // this.filteredMembers = data;
         this.isLoading = false;
       },
       error: (err) => {
@@ -50,33 +54,33 @@ export class AddMemberComponent {
     });
   }
 
-  openMemberEditDialog(id : string){
-    const member = this.members.find(m => m.id === id);
+  openMemberEditDialog(id: string) {
+    const member = this.members.find((m) => m.id === id);
 
-  const dialogRef = this.dialog.open(MemberComponent, {
-    width: '500px',
-    data: { member }
-  });
+    const dialogRef = this.dialog.open(MemberComponent, {
+      width: '500px',
+      data: { member },
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      const index = this.members.findIndex(m => m.id === id);
-      this.members[index] = { ...this.members[index], ...result };
-    }
-  });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const index = this.members.findIndex((m) => m.id === id);
+        this.members[index] = { ...this.members[index], ...result };
+      }
+    });
   }
 
   openMemberDialog(member?: any) {
     const dialogRef = this.dialog.open(MemberComponent, {
       width: '500px',
-      data: member ? { member } : null
+      data: member ? { member } : null,
     });
 
-       dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (member) {
           // Update existing member
-          const index = this.members.findIndex(m => m.id === member.id);
+          const index = this.members.findIndex((m) => m.id === member.id);
           this.members[index] = { ...this.members[index], ...result };
         } else {
           // Add new member
@@ -86,14 +90,10 @@ export class AddMemberComponent {
     });
   }
 
-  
-
-   openMemberForm(blog?: any) {
-    this.router.navigate(['/admin/add-member', blog.id]);
+  openMemberForm(member?: any) {
+    this.router.navigate(['/admin/member', member.id]);
   }
-    deleteMember(member: any) {
-    this.members = this.members.filter(m => m.id !== member.id);
+  deleteMember(member: any) {
+    this.members = this.members.filter((m) => m.id !== member.id);
   }
-
 }
-
