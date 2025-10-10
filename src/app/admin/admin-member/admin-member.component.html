@@ -1,0 +1,35 @@
+<div class="membership-container">
+  <h2>Members</h2>
+
+  <!-- Add Member Button -->
+  <button mat-raised-button color="primary" (click)="openMemberDialog()">
+    + Add Member
+  </button>
+
+  <!-- Member List Table -->
+
+  <mat-divider></mat-divider>
+
+  <h3>Recent Members</h3>
+
+    <app-reusable-table
+  [data]="members"
+  [isLoading]="isLoading"
+  [columns]="[
+    { key: 'name', label: 'Name' },
+    { key: 'fName', label: 'Father Name' },
+    { key: 'contact', label: 'Contact' }
+  ]"
+  [showActions]="true"
+  (edit)="openMemberForm($event)"
+  (delete)="deleteMember($event)"
+>
+  <!-- Optional custom cell template -->
+  <ng-template #price let-value="value">
+    ₹{{ value }}
+  </ng-template>
+</app-reusable-table>
+
+
+</div>
+<p>admin-member works!</p>

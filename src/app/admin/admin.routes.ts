@@ -30,8 +30,13 @@ export const ADMIN_ROUTES: Routes = [
       {
         path: 'member',
         loadComponent: () =>
-          import('./member/member.component').then((m) => m.AddMemberComponent),
+          import('./admin-member/admin-member.component').then((m) => m.AdminMemberComponent),
       },
+      {
+  path: 'member/:id',
+  loadComponent: () =>
+    import('././member/member.component').then((m) => m.AddMemberComponent),
+},
 
       {
         path: 'contribution',
