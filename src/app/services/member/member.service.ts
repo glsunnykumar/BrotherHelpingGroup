@@ -11,7 +11,6 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { deleteObject, getStorage, ref } from '@angular/fire/storage';
-import { CollectionReference, DocumentData } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
