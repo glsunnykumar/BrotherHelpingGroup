@@ -49,9 +49,9 @@ export class PostService {
   }
 
   async uploadImage(file: File) {
-    // const storageRef = ref(this.storage, `posts/${Date.now()}_${file.name}`);
-    // await uploadBytes(storageRef, file);
-    // return await getDownloadURL(storageRef);
+    const storageRef = ref(this.storage, `posts/${Date.now()}_${file.name}`);
+    await uploadBytes(storageRef, file);
+    return await getDownloadURL(storageRef);
   }
 
   async getPosts() {
