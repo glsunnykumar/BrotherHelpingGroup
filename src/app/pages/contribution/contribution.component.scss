@@ -1,84 +1,73 @@
-.contribution-grid {
+.contribution-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  padding: 40px;
+  background: #f4f6f9;
 }
 
-.contribution-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+.card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
 
-
-.card-content-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0 1rem 1rem;
-}
-
-.title-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* or center, based on your preference */
-  gap: 4px;
-  padding: 0.25rem 0;
-   align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #111;
-}
-
-.date {
-  font-size: 14px;
-  font-weight: 500;
-  color: #666;
-}
-
-.location {
-  font-size: 13px;
-  color: #777;
-}
-
-
-.description {
-  flex-grow: 1;
-  font-size: 14px;
-  color: #444;
-}
-
-.location
-{
-  align-items: center;
-  font-size: larger;
-}
-
-.actions {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-}
-
-.event-image {
-  width: 100%;
-  height: 200px;        // Fixed height for all images
-  object-fit: cover;    // Ensures image covers the area uniformly
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-@media (max-width: 600px) {
-  .title-row {
-    flex-direction: column;
-    align-items: flex-start;
+  &:hover {
+    transform: translateY(-5px);
   }
+
+  img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+}
+
+.card-content {
+  padding: 18px;
+
+  h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #1e293b;
+  }
+
+  .location {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 4px;
+  }
+
+  .date {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.5;
+  }
+
+  .read-btn {
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+  .contribution-container{
+    grid-template-columns:1fr;
+    padding:20px;
+  }
+
 }

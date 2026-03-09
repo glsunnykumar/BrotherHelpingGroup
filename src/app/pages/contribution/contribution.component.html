@@ -1,32 +1,31 @@
-<div class="contribution-page">
-  <h2>Our Contributions</h2>
-  <div class="contribution-grid">
-   <mat-card *ngFor="let event of contributions" class="contribution-card">
-  <img mat-card-image [src]="event.image" alt="{{ event.title }}" class="event-image" />
-  <mat-card-header>
-  <mat-card-title>
-    <div class="title-section">
-      <span class="title">{{ event.title }}</span>
-      <span class="date">{{ event.date | date: 'dd/MM/yy' }}</span>
-      <span class="location">{{ event.location }}</span>
-    </div>
-  </mat-card-title>
-</mat-card-header>
+<div class="contribution-container">
 
+  <div class="card" *ngFor="let item of contributions">
 
-  
-  <!-- Content wrapper to align description & button at bottom -->
-  <div class="card-content-wrapper">
-    <mat-card-content class="description">
-      <p>{{ event.description | wordLimit:50 }}</p>
-    </mat-card-content>
-    <mat-card-actions class="viewMorebutton">
-      <button  mat-raised-button (click)="event.isExpanded = !event.isExpanded">
-        {{ event.isExpanded ? 'Show Less' : 'Learn More' }}
+    <img [src]="item.imageUrl" alt="Contribution Image">
+
+    <div class="card-content">
+
+      <h3>{{ item.title }}</h3>
+
+      <p class="location">
+        📍 {{ item.location }}
+      </p>
+
+      <p class="date">
+        {{ item.date | date:'mediumDate' }}
+      </p>
+
+      <p class="description">
+        {{ item.isExpanded ? item.description : (item.description | slice:0:140) + '...' }}
+      </p>
+
+      <button class="read-btn" (click)="item.isExpanded = !item.isExpanded">
+        {{ item.isExpanded ? 'Show Less' : 'Read More' }}
       </button>
-    </mat-card-actions>
-  </div>
-</mat-card>
+
+    </div>
 
   </div>
+
 </div>
