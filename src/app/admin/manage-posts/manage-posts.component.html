@@ -5,23 +5,41 @@
     <button routerLink="/admin/add-post">Add New</button>
   </div>
 
-  <div class="post-grid">
-    <div class="post-card" *ngFor="let post of posts">
 
-      <img [src]="post.imageUrl" />
+    <div class="grid">
+
+    <div class="card" *ngFor="let post of posts">
+
+      <img [src]="post.imageUrl" alt="post image">
 
       <div class="content">
         <h3>{{ post.title }}</h3>
-        <p>{{ post.location }}</p>
-        <p>{{ post.eventDate | date }}</p>
+
+        <p class="location">
+          📍 {{ post.location }}
+        </p>
+
+        <p class="date">
+          {{ post.eventDate | date:'mediumDate' }}
+        </p>
       </div>
 
       <div class="actions">
-        <button (click)="edit(post)">Edit</button>
-        <button (click)="delete(post.id)">Delete</button>
+        <button [routerLink]="['/admin/edit-post', post.id]">
+          Edit
+        </button>
+
+        <button (click)="delete(post.id)">
+          Delete
+        </button>
       </div>
 
     </div>
+
   </div>
+
+  <div *ngIf="posts.length === 0" class="empty">
+  No posts available
+</div>
 
 </div>

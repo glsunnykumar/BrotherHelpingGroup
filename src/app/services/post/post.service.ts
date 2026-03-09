@@ -8,9 +8,11 @@ import {
   updateDoc,
   deleteDoc,
   getDoc,
+  collectionData,
 } from '@angular/fire/firestore';
 
 import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
 
 export interface Post {
   id?: string;
@@ -54,10 +56,10 @@ export class PostService {
     return await getDownloadURL(storageRef);
   }
 
-  async getPosts() {
-    const postRef = collection(this.firestore, 'posts');
-    return await getDocs(postRef);
-  }
+  getPosts(): Observable<any[]> {
+  const postRef = collection(this.firestore, 'posts');
+  return collectionData(postRef, { idField: 'id' }) as Observable<any[]>;
+}
 
   async getPostById(id: string) {
     const docRef = doc(this.firestore, `posts/${id}`);

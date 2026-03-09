@@ -19,9 +19,10 @@ export class ManagePostsComponent {
   posts: Post[] = [];
 
     constructor() {
-    // this.postService.getPosts().subscribe(data => {
-    //   this.posts = data;
-    // });
+    this.postService.getPosts().subscribe(data => {
+      this.posts = data;
+      console.log('Posts:', this.posts);
+    });
   }
 
     edit(post: Post) {
