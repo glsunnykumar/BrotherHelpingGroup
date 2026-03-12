@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
+import { doc, getDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-edit-post',
@@ -33,6 +34,31 @@ export class AddEditPostComponent {
   constructor() {
     this.postId = this.route.snapshot.paramMap.get('id');
   }
+
+  async ngOnInit() {
+
+  this.postId = this.route.snapshot.paramMap.get('id');
+
+  if (this.postId) {
+
+    const postDoc = await this.postService.getPostById(this.postId);
+
+    if (postDoc.exists()) {
+
+      const postData: any = postDoc.data();
+
+      this.form.patchValue({
+        title: postData.title,
+        description: postData.description,
+        location: postData.location,
+        eventDate: postData.eventDate
+      });
+
+    }
+
+  }
+
+}
 
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];

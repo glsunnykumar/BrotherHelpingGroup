@@ -6,7 +6,7 @@
   </div>
 
 
-    <div class="grid">
+  <div class="grid">
 
     <div class="card" *ngFor="let post of posts">
 
@@ -25,7 +25,7 @@
       </div>
 
       <div class="actions">
-        <button [routerLink]="['/admin/edit-post', post.id]">
+        <button [routerLink]="['/admin/edit-post', post.id]" class="edit-btn">
           Edit
         </button>
 
@@ -35,11 +35,10 @@
       </div>
 
     </div>
-
   </div>
 
   <div *ngIf="posts.length === 0" class="empty">
-  No posts available
-</div>
+    No posts available
+  </div>
 
 </div>
