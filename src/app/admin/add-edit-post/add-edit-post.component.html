@@ -1,7 +1,10 @@
 <div class="page-container">
 
+  <div class="loading" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
   <div class="form-card">
-   <h2>{{ postId ? 'Edit Post' : 'Add Post' }}</h2>
+    <h2>{{ postId ? 'Edit Post' : 'Add Post' }}</h2>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
 
@@ -23,18 +26,27 @@
           <input type="date" formControlName="eventDate" />
         </div>
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="!previewImage">
           <label>Upload Image</label>
           <input type="file" (change)="onFileChange($event)" />
         </div>
       </div>
+
+      <div class="form-group" *ngIf="previewImage">
+
+        <img [src]="previewImage">
+
+      </div>
+
+      <input type="file" (change)="onFileChange($event)">
 
       <div class="form-group full-width">
         <label>Description</label>
         <textarea rows="5" formControlName="description"></textarea>
       </div>
 
-      <button type="submit" class="save-btn">Save Post</button>
+      <button type="submit" class="save-btn">
+        {{ postId ? 'Edit Post' : 'Save Post' }}</button>
 
     </form>
   </div>
