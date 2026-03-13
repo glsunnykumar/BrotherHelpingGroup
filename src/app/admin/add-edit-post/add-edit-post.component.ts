@@ -84,51 +84,37 @@ export class AddEditPostComponent {
   }
 
   async submit() {
-    if (this.form.invalid) return;
+    this.isSubmitting = true;
 
-    try {
-      this.isSubmitting = true;
+    let imageUrl = this.previewImage;
 
-      let imageUrl = this.form.value.imageUrl || '';
-
-      if (this.selectedFile) {
-        imageUrl = await this.postService.uploadImage(this.selectedFile);
-      }
+    if (this.selectedFile) {
+      imageUrl = await this.postService.uploadImage(this.selectedFile);
+    }
 
       const data = {
-        ...this.form.value,
-        imageUrl,
-      };
+    title: this.form.value.title ?? '',
+    description: this.form.value.description ?? '',
+    location: this.form.value.location ?? '',
+    eventDate: this.form.value.eventDate ?? '',
+    imageUrl: imageUrl ?? '',
+    createdAt: new Date()
+  };
 
-      if (this.postId) {
-        await this.postService.updatePost(this.postId, data);
+    if (this.postId) {
+      await this.postService.updatePost(this.postId, data);
 
-        this.snackBar.open('Post updated successfully 🎉', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-        });
-      } else {
-        await this.postService.addPost(data as any);
-
-        this.snackBar.open('Post added successfully 🎉', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-        });
-
-        this.form.reset();
-      }
-
-      this.router.navigate(['/admin/manage-posts']);
-    } catch (error) {
-      this.snackBar.open('Something went wrong ❌', 'Close', {
+      this.snackBar.open('Post updated successfully', 'Close', {
         duration: 3000,
-        horizontalPosition: 'end',
-        verticalPosition: 'top',
       });
-    } finally {
-      this.isSubmitting = false;
+    } else {
+      await this.postService.addPost(data);
+
+      this.snackBar.open('Post added successfully', 'Close', {
+        duration: 3000,
+      });
     }
+
+    this.router.navigate(['/admin/manage-posts']);
   }
 }

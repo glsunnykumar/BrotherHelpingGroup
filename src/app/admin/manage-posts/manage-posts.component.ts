@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Post, PostService } from '../../services/post/post.service';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
+import { WordLimitPipe } from '../../pipe/word-limit.pipe';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
