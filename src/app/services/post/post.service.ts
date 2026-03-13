@@ -3,15 +3,21 @@ import {
   Firestore,
   collection,
   addDoc,
-  getDocs,
   doc,
   updateDoc,
   deleteDoc,
   getDoc,
   collectionData,
+  query,
+  orderBy,
 } from '@angular/fire/firestore';
 
-import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
+import {
+  Storage,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
 export interface Post {
@@ -57,9 +63,11 @@ export class PostService {
   }
 
   getPosts(): Observable<any[]> {
-  const postRef = collection(this.firestore, 'posts');
-  return collectionData(postRef, { idField: 'id' }) as Observable<any[]>;
-}
+    const postRef = collection(this.firestore, 'posts');
+
+    const q = query(postRef, orderBy('eventDate', 'desc'));
+    return collectionData(q, { idField: 'id' }) as Observable<any[]>;
+  }
 
   async getPostById(id: string) {
     const docRef = doc(this.firestore, `posts/${id}`);

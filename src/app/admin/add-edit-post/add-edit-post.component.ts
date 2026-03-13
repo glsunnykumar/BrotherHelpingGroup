@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { doc, getDoc } from '@angular/fire/firestore';
+import { GlobalLoaderComponent } from "../../shared/global-loader/global-loader.component";
 
 @Component({
   selector: 'app-add-edit-post',
@@ -14,7 +15,8 @@ import { doc, getDoc } from '@angular/fire/firestore';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-  ],
+    GlobalLoaderComponent
+],
   templateUrl: './add-edit-post.component.html',
   styleUrl: './add-edit-post.component.scss',
 })
@@ -85,6 +87,7 @@ export class AddEditPostComponent {
 
   async submit() {
     this.isSubmitting = true;
+    this.isLoading = true;
 
     let imageUrl = this.previewImage;
 
@@ -114,7 +117,7 @@ export class AddEditPostComponent {
         duration: 3000,
       });
     }
-
+    this.isLoading = false;
     this.router.navigate(['/admin/manage-posts']);
   }
 }
