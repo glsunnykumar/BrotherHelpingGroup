@@ -9,8 +9,12 @@ import { doc, getDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-edit-post',
-  imports: [CommonModule,
-     ReactiveFormsModule, MatSnackBarModule, MatProgressSpinnerModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './add-edit-post.component.html',
   styleUrl: './add-edit-post.component.scss',
 })
@@ -40,51 +44,44 @@ export class AddEditPostComponent {
   }
 
   async ngOnInit() {
+    this.postId = this.route.snapshot.paramMap.get('id');
 
-  this.postId = this.route.snapshot.paramMap.get('id');
+    if (this.postId) {
+      this.isLoading = true;
 
-  if (this.postId) {
-     this.isLoading = true;
+      const postDoc = await this.postService.getPostById(this.postId);
 
+      if (postDoc.exists()) {
+        const postData: any = postDoc.data();
 
-    const postDoc = await this.postService.getPostById(this.postId);
-
-    if (postDoc.exists()) {
-
-      const postData: any = postDoc.data();
-
-      this.form.patchValue({
-        title: postData.title,
-        description: postData.description,
-        location: postData.location,
-        eventDate: postData.eventDate
-      });
+        this.form.patchValue({
+          title: postData.title,
+          description: postData.description,
+          location: postData.location,
+          eventDate: postData.eventDate,
+        });
 
         this.previewImage = postData.imageUrl;
-    }
+      }
       this.isLoading = false;
-
+    }
   }
 
-}
+  onFileChange(event: any) {
+    const file = event.target.files[0];
 
- onFileChange(event: any) {
+    if (file) {
+      this.selectedFile = file;
 
-  const file = event.target.files[0];
+      const reader = new FileReader();
 
-  if (file) {
-    this.selectedFile = file;
+      reader.onload = () => {
+        this.previewImage = reader.result as string;
+      };
 
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      this.previewImage = reader.result as string;
-    };
-
-    reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+    }
   }
-
-}
 
   async submit() {
     if (this.form.invalid) return;
