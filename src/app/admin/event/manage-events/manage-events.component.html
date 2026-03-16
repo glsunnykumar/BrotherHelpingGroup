@@ -1,0 +1,33 @@
+<div class="container">
+
+<h2>Upcoming Events</h2>
+<div class="header">
+<button routerLink="/admin/add-event" class="add-btn">
+Add Event
+</button>
+</div>
+<div class="grid">
+
+<div class="card" *ngFor="let event of events">
+
+<h3>{{event.title}}</h3>
+
+<p>📅 {{event.eventDate}}</p>
+
+<p>📍 {{event.location}}</p>
+
+<p>Sponsor: {{event.sponsor}}</p>
+
+<div class="actions">
+
+<!-- <button (click)="edit(event.id)">Edit</button> -->
+
+<button (click)="delete(event.id)">Delete</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

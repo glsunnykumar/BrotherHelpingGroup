@@ -39,6 +39,13 @@ export const ADMIN_ROUTES: Routes = [
       },
 
       {
+  path:'events',
+  loadComponent:() =>
+    import('./event/manage-events/manage-events.component')
+    .then(m=>m.ManageEventsComponent)
+},
+
+      {
         path: 'add-post',
         loadComponent: () =>
           import('./add-edit-post/add-edit-post.component').then(
