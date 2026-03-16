@@ -1,56 +1,93 @@
 <div class="page-container">
 
-  <!-- <div class="loading" *ngIf="isLoading">
-    <mat-spinner></mat-spinner>
-  </div> -->
+  <!-- Global Loader -->
+  <app-global-loader [loading]="isLoading"></app-global-loader>
 
-    <app-global-loader [loading]="isLoading" />
   <div class="form-card">
+
     <h2>{{ postId ? 'Edit Post' : 'Add Post' }}</h2>
 
     <form [formGroup]="form" (ngSubmit)="submit()">
 
+      <!-- TITLE + LOCATION -->
       <div class="form-row">
+
         <div class="form-group">
           <label>Title</label>
-          <input type="text" formControlName="title" />
+          <input
+            type="text"
+            formControlName="title"
+            placeholder="Enter title"
+          />
         </div>
 
         <div class="form-group">
           <label>Location</label>
-          <input type="text" formControlName="location" />
+          <input
+            type="text"
+            formControlName="location"
+            placeholder="Enter location"
+          />
         </div>
+
       </div>
 
+      <!-- DATE + IMAGE -->
       <div class="form-row">
+
         <div class="form-group">
           <label>Event Date</label>
-          <input type="date" formControlName="eventDate" />
+          <input
+            type="date"
+            formControlName="eventDate"
+          />
         </div>
 
-        <div class="form-group" *ngIf="!previewImage">
+        <div class="form-group">
           <label>Upload Image</label>
-          <input type="file" (change)="onFileChange($event)" />
+          <input
+            type="file"
+            (change)="onFileChange($event)"
+          />
         </div>
-      </div>
-
-      <div class="form-group" *ngIf="previewImage">
-
-        <img [src]="previewImage">
 
       </div>
 
-      <input type="file" (change)="onFileChange($event)">
+      <!-- IMAGE PREVIEW -->
+      <div class="form-group image-preview" *ngIf="previewImage">
 
+        <label>Preview</label>
+
+        <img
+          [src]="previewImage"
+          alt="Post image"
+        />
+
+      </div>
+
+      <!-- DESCRIPTION -->
       <div class="form-group full-width">
+
         <label>Description</label>
-        <textarea rows="5" formControlName="description"></textarea>
+
+        <textarea
+          rows="5"
+          formControlName="description"
+          placeholder="Write post description..."
+        ></textarea>
+
       </div>
 
-      <button type="submit" class="save-btn">
-        {{ postId ? 'Edit Post' : 'Save Post' }}</button>
+      <!-- SUBMIT BUTTON -->
+      <button
+        type="submit"
+        class="save-btn"
+      >
+        {{ postId ? 'Update Post' : 'Save Post' }}
+      </button>
 
     </form>
+
   </div>
 
 </div>
