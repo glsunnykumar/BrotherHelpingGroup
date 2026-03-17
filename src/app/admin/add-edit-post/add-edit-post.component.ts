@@ -5,7 +5,6 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post/post.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { doc, getDoc } from '@angular/fire/firestore';
 import { GlobalLoaderComponent } from "../../shared/global-loader/global-loader.component";
 
 @Component({
@@ -20,6 +19,8 @@ import { GlobalLoaderComponent } from "../../shared/global-loader/global-loader.
   templateUrl: './add-edit-post.component.html',
   styleUrl: './add-edit-post.component.scss',
 })
+
+
 export class AddEditPostComponent {
   private fb = inject(FormBuilder);
   private postService = inject(PostService);
