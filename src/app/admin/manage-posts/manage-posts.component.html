@@ -1,13 +1,12 @@
 <div class="post-container">
 
+  <h2>Manage Posts</h2>
   <div class="header">
-    <h2>Manage Posts</h2>
-    <button routerLink="/admin/add-post">Add New</button>
+
+    <button mat-raised-button color="primary" routerLink="/admin/add-post"> + Add Post</button>
   </div>
 
-
   <div class="grid">
-
     <div class="card" *ngFor="let post of posts">
 
       <img [src]="post.imageUrl" alt="post image">
