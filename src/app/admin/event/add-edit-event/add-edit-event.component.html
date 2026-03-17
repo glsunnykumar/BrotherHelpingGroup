@@ -1,0 +1,65 @@
+<div class="event-page">
+
+  <div class="event-card">
+
+    <h2>{{eventId ? 'Edit Event' : 'Add Upcoming Event'}}</h2>
+
+    <form [formGroup]="eventForm" (ngSubmit)="submit()">
+
+      <!-- TITLE -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Event Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <!-- DATE -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Event Date</mat-label>
+        <input matInput type="date" formControlName="eventDate">
+      </mat-form-field>
+
+      <!-- LOCATION -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+
+      <!-- SPONSOR -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sponsor</mat-label>
+        <input matInput formControlName="sponsor">
+      </mat-form-field>
+
+      <!-- VIDEO URL -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Event Video URL</mat-label>
+        <input matInput formControlName="videoUrl">
+      </mat-form-field>
+
+      <!-- IMAGE UPLOAD -->
+      <div class="image-upload">
+
+        <label>Event Banner</label>
+
+        <input type="file" (change)="onFileChange($event)">
+
+        <img *ngIf="previewImage" [src]="previewImage">
+
+      </div>
+
+      <!-- DESCRIPTION -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="4" formControlName="description"></textarea>
+      </mat-form-field>
+
+      <!-- BUTTON -->
+      <button mat-raised-button color="primary" class="save-btn">
+        {{eventId ? 'Update Event' : 'Save Event'}}
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
