@@ -39,14 +39,23 @@ export const ADMIN_ROUTES: Routes = [
       },
 
       {
-  path:'events',
-  loadComponent:() =>
-    import('./event/manage-events/manage-events.component')
-    .then(m=>m.ManageEventsComponent)
-},
+        path: 'events',
+        loadComponent: () =>
+          import('./event/manage-events/manage-events.component').then(
+            (m) => m.ManageEventsComponent,
+          ),
+      },
 
-  {
+      {
         path: 'add-event',
+        loadComponent: () =>
+          import('./event/add-edit-event/add-edit-event.component').then(
+            (m) => m.AddEditEventComponent,
+          ),
+      },
+
+      {
+        path: 'edit-event/:id',
         loadComponent: () =>
           import('./event/add-edit-event/add-edit-event.component').then(
             (m) => m.AddEditEventComponent,
