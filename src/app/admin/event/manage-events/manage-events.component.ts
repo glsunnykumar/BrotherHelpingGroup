@@ -1,9 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { EventService } from '../event.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-manage-events',
-  imports: [],
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   templateUrl: './manage-events.component.html',
   styleUrl: './manage-events.component.scss',
 })
