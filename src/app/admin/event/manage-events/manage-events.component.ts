@@ -3,14 +3,16 @@ import { EventService } from '../event.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { GlobalLoaderComponent } from "../../../shared/global-loader/global-loader.component";
 
 @Component({
   selector: 'app-manage-events',
   imports: [
     CommonModule,
     RouterModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    GlobalLoaderComponent
+],
   templateUrl: './manage-events.component.html',
   styleUrl: './manage-events.component.scss',
 })
@@ -19,11 +21,14 @@ export class ManageEventsComponent {
 
   events: any[] = [];
   private router = inject(Router);
+  isLoading = false;
 
   ngOnInit() {
+    this.isLoading = true;
     this.eventService.getEvents().subscribe((res) => {
       this.events = res;
       console.log(this.events);
+      this.isLoading = false;
     });
   }
 
