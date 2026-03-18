@@ -1,33 +1,69 @@
 <div class="container">
 
-<h2>Upcoming Events</h2>
-<div class="header">
-<button mat-raised-button color="primary" routerLink="/admin/add-event" class="add-btn">
-+ Add Event
-</button>
-</div>
-<div class="grid">
+  <div class="top-bar">
+    <h2>Upcoming Events</h2>
 
-<div class="card" *ngFor="let event of events">
+    <button mat-raised-button color="primary"
+      routerLink="/admin/add-event">
+      + Add Event
+    </button>
+  </div>
 
-<h3>{{event.title}}</h3>
+  <div class="grid">
 
-<p>📅 {{event.eventDate}}</p>
+    <div class="event-card" *ngFor="let event of events">
 
-<p>📍 {{event.location}}</p>
+      <!-- EVENT IMAGE -->
+      <div class="event-image" *ngIf="event.imageUrl">
+        <img [src]="event.imageUrl">
+        <span class="status-badge" [ngClass]="getStatus(event.eventDate)">
+          {{ getStatus(event.eventDate) }}
+        </span>
+      </div>
 
-<p>Sponsor: {{event.sponsor}}</p>
+      <div class="event-body">
 
-<div class="actions">
+        <h3>{{event.title}}</h3>
 
-<button (click)="edit(event.id)">Edit</button>
+        <p>
+          <mat-icon>calendar_today</mat-icon>
+          {{event.eventDate | date:'mediumDate'}}
+        </p>
 
-<button (click)="delete(event.id)">Delete</button>
+        <p>
+          <mat-icon>location_on</mat-icon>
+          {{event.location}}
+        </p>
 
-</div>
+        <p *ngIf="event.sponsor">
+          <mat-icon>volunteer_activism</mat-icon>
+          Sponsor: {{event.sponsor}}
+        </p>
 
-</div>
+      </div>
 
-</div>
+      <div class="actions">
+
+        <button class="video-btn"
+          *ngIf="event.videoUrl"
+          (click)="openVideo(event.videoUrl)">
+          <mat-icon>play_circle</mat-icon>
+        </button>
+
+        <button class="edit-btn"
+          (click)="edit(event.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button class="delete-btn"
+          (click)="delete(event.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
