@@ -1,0 +1,32 @@
+<div class="video-wrapper">
+
+  <!-- CLOSE BUTTON -->
+  <button class="close-btn" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <!-- VIDEO CONTAINER -->
+  <div class="video-container">
+
+    <!-- YOUTUBE -->
+    <iframe
+      *ngIf="data.url.includes('youtube') || data.url.includes('youtu.be')"
+      [src]="data.url | safeUrl"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+
+    <!-- MP4 -->
+    <video
+      *ngIf="!data.url.includes('youtube') && !data.url.includes('youtu.be')"
+      controls
+      autoplay
+      muted
+      playsinline>
+      <source [src]="data.url" type="video/mp4">
+    </video>
+
+  </div>
+
+</div>

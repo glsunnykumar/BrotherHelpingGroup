@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { GlobalLoaderComponent } from "../../../shared/global-loader/global-loader.component";
+import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
+import { VideoDialogComponent } from '../../shared/video-dialog/video-dialog.component';
 
 @Component({
   selector: 'app-manage-events',
@@ -18,6 +21,8 @@ import { GlobalLoaderComponent } from "../../../shared/global-loader/global-load
 })
 export class ManageEventsComponent {
   eventService = inject(EventService);
+  private dialog = inject(MatDialog);
+private sanitizer = inject(DomSanitizer);
 
   events: any[] = [];
   private router = inject(Router);
@@ -55,7 +60,23 @@ return 'completed';
 }
 
 openVideo(url:string){
-  window.open(url,'_blank');
+   let safeUrl = url;
+
+  // Convert YouTube URL to embed
+  if(url.includes('youtube')){
+    const videoId = url.split('v=')[1];
+    console.log(videoId);
+    safeUrl = `https://www.youtube.com/embed/${videoId}`;
+  }
+
+  this.dialog.open(VideoDialogComponent, {
+    data: {
+      url: url,
+      safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(safeUrl)
+    },
+    width: '800px'
+  });
+
 }
 
   delete(id: string) {
