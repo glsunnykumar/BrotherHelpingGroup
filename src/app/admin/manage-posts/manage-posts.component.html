@@ -1,12 +1,9 @@
 <div class="post-container">
 
   <h2>Manage Posts</h2>
-  <div class="header">
 
-     <button mat-raised-button color="primary"
-      routerLink="/admin/add-event">
-      + Add Event
-    </button>
+ <app-global-loader [loading]="isLoading"></app-global-loader>
+  <div class="header">
     <button mat-raised-button color="primary" routerLink="/admin/add-post"> + Add Post</button>
   </div>
 

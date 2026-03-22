@@ -1,0 +1,38 @@
+<div class="container">
+   <app-global-loader [loading]="isLoading"></app-global-loader>
+  <div class="top-bar">
+    <h2>Blogs</h2>
+
+    <button  routerLink="/admin/add-blog" mat-raised-button color="primary">
+      + Add Blog
+    </button>
+  </div>
+
+  <div class="grid">
+
+    <div class="blog-card" *ngFor="let blog of blogs">
+
+      <img *ngIf="blog.imageUrl" [src]="blog.imageUrl">
+
+      <div class="content">
+
+        <h3>{{blog.title}}</h3>
+
+        <p>{{blog.content | slice:0:100}}...</p>
+
+        <span>By {{blog.author}}</span>
+
+      </div>
+
+      <div class="actions">
+
+        <button (click)="edit(blog.id)">Edit</button>
+        <button (click)="delete(blog.id)">Delete</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
