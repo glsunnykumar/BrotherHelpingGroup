@@ -78,19 +78,28 @@ export const ADMIN_ROUTES: Routes = [
           ),
       },
 
+       {
+        path: 'blogs',
+        loadComponent: () =>
+          import('./blog/manage-blog/manage-blog.component').then(
+            (m) => m.ManageBlogComponent,
+          ),
+      },
 
       {
-  path:'add-blog',
-  loadComponent:() =>
-    import('./blog/manage-blog/manage-blog.component')
-    .then(m=>m.ManageBlogComponent)
-},
-// {
-//   path:'edit-blog/:id',
-//   loadComponent:() =>
-//     import('./admin/blog/add-edit-blog.component')
-//     .then(m=>m.AddEditBlogComponent)
-// },
+        path: 'add-blog',
+        loadComponent: () =>
+          import('./blog/add-edit-blog/add-edit-blog.component').then(
+            (m) => m.AddEditBlogComponent,
+          ),
+      },
+      {
+        path: 'edit-blog/:id',
+        loadComponent: () =>
+          import('./blog/add-edit-blog/add-edit-blog.component').then(
+            (m) => m.AddEditBlogComponent,
+          ),
+      },
 
       {
         path: 'member',

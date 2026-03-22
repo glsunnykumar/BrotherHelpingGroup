@@ -1,0 +1,57 @@
+<div class="page-container">
+
+  <div class="form-card">
+
+    <h2>{{ blogId ? 'Edit Blog' : 'Add Blog' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- ROW 1 -->
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" formControlName="title" placeholder="Enter blog title" />
+        </div>
+
+        <div class="form-group">
+          <label>Author</label>
+          <input type="text" formControlName="author" placeholder="Enter author name" />
+        </div>
+
+      </div>
+
+      <!-- IMAGE UPLOAD -->
+      <div class="form-group">
+        <label>Upload Cover Image</label>
+        <input type="file" (change)="onFileChange($event)" />
+      </div>
+
+      <!-- IMAGE PREVIEW -->
+      <div class="form-group image-preview" *ngIf="previewImage">
+        <img [src]="previewImage" />
+      </div>
+
+      <!-- CONTENT -->
+      <div class="form-group full-width">
+
+        <label>Content</label>
+
+        <textarea
+          rows="6"
+          formControlName="content"
+          placeholder="Write blog content..."
+        ></textarea>
+
+      </div>
+
+      <!-- BUTTON -->
+      <button type="submit" class="save-btn">
+        {{ blogId ? 'Update Blog' : 'Save Blog' }}
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
