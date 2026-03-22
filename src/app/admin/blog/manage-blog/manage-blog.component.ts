@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BlogService } from '../blog.service';
 import { GlobalLoaderComponent } from "../../../shared/global-loader/global-loader.component";
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-manage-blog',
@@ -12,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule, 
     RouterModule, 
     MatButtonModule,
+    MatIconModule,
     GlobalLoaderComponent],
   templateUrl: './manage-blog.component.html',
   styleUrl: './manage-blog.component.scss',
