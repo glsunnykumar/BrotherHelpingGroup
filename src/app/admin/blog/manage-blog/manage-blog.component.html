@@ -1,46 +1,71 @@
 <div class="container">
-   <app-global-loader [loading]="isLoading"></app-global-loader>
+  <app-global-loader *ngIf="isLoading"></app-global-loader>
+  <!-- TOP BAR -->
   <div class="top-bar">
+
     <h2>Blogs</h2>
 
-    <button  routerLink="/admin/add-blog" mat-raised-button color="primary">
-      + Add Blog
-    </button>
+    <div class="actions-bar">
+
+      <input
+        type="text"
+        placeholder="Search blogs..."
+        [(ngModel)]="searchText"
+      />
+
+      <select [(ngModel)]="statusFilter">
+        <option value="">All</option>
+        <option value="published">Published</option>
+        <option value="draft">Draft</option>
+      </select>
+
+      <button routerLink="/admin/add-blog" class="add-btn">
+        + Add Blog
+      </button>
+
+    </div>
+
   </div>
 
+  <!-- GRID -->
   <div class="grid">
 
-    <div class="blog-card" *ngFor="let blog of blogs">
+    <div class="blog-card"
+      *ngFor="let blog of filteredBlogs">
 
       <!-- IMAGE -->
-      <div class="blog-image" *ngIf="blog.imageUrl">
-        <img [src]="blog.imageUrl">
+      <div class="image-wrapper">
+
+        <img [src]="blog.imageUrl || 'assets/default.jpg'">
+
+        <span class="status" [ngClass]="blog.status || 'draft'">
+          {{blog.status || 'draft'}}
+        </span>
+
       </div>
 
-      <!-- CONTENT -->
+      <!-- BODY -->
       <div class="blog-body">
 
         <h3>{{blog.title}}</h3>
 
-        <p class="excerpt">
-          {{blog.content | slice:0:100}}...
-        </p>
+        <p>{{blog.content | slice:0:90}}...</p>
 
         <div class="meta">
-          <span>✍️ {{blog.author}}</span>
-          <span>📅 {{blog.createdAt?.toDate?.() | date:'mediumDate'}}</span>
+          <span>{{blog.author}}</span>
+          <span>{{blog.createdAt?.toDate?.() | date:'mediumDate'}}</span>
         </div>
 
       </div>
 
-      <!-- ACTIONS -->
-      <div class="actions">
+      <!-- ACTION OVERLAY -->
+      <div class="overlay">
 
-        <button class="icon-btn edit" (click)="edit(blog.id)">
+        <button (click)="edit(blog.id)">
           <mat-icon>edit</mat-icon>
         </button>
 
-        <button class="icon-btn delete" (click)="delete(blog.id)">
+        <button (click)="delete(blog.id)">
           <mat-icon>delete</mat-icon>
         </button>
 
@@ -49,6 +74,5 @@
     </div>
 
   </div>
-
 
 </div>

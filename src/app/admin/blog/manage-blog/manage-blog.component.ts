@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BlogService } from '../blog.service';
 import { GlobalLoaderComponent } from "../../../shared/global-loader/global-loader.component";
@@ -9,12 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-manage-blog',
-  imports: [CommonModule, 
+  imports: [
+    CommonModule, 
     ReactiveFormsModule, 
     RouterModule, 
+    FormsModule,
     MatButtonModule,
     MatIconModule,
-    GlobalLoaderComponent],
+    GlobalLoaderComponent
+  ],
   templateUrl: './manage-blog.component.html',
   styleUrl: './manage-blog.component.scss',
 })
@@ -23,6 +26,10 @@ export class ManageBlogComponent {
   blogService = inject(BlogService);
   route = inject(ActivatedRoute);
   router = inject(Router);
+  searchText: string = '';
+   // ✅ ADD THESE
+  statusFilter: string = '';
+  filteredBlogs: any[] = [];
 
   blogId: string | null = null;
   previewImage: any;
@@ -49,11 +56,37 @@ isLoading = false;
     else {
       this.blogService.getBlogs().subscribe((blogs) => {
         this.blogs = blogs;
+        this.applyFilter(); // Apply initial filter
       });
     }
       this.isLoading = false;
 
   }
+
+  transform(blogs:any[], search:string, status:string){
+  return blogs.filter(b =>
+    (!search || b.title.toLowerCase().includes(search.toLowerCase())) &&
+    (!status || b.status === status)
+  );
+}
+
+applyFilter() {
+
+  this.filteredBlogs = this.blogs.filter(blog => {
+
+    const matchesSearch =
+      !this.searchText ||
+      blog.title.toLowerCase().includes(this.searchText.toLowerCase());
+
+    const matchesStatus =
+      !this.statusFilter ||
+      blog.status === this.statusFilter;
+
+    return matchesSearch && matchesStatus;
+
+  });
+
+}
 
   edit(id: string) {
     this.router.navigate(['/admin/edit-blog', id]);
