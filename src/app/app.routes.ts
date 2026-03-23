@@ -12,6 +12,12 @@ export const routes: Routes = [
   { path: 'contribution', component: ContributionComponent },
   { path: 'about-us', component: AboutUsComponent },
   {
+  path: 'blogs',
+  loadComponent: () =>
+    import('./pages/blog-list/blog-list.component')
+    .then(m => m.BlogListComponent)
+},
+  {
   path: 'blog/:id',
   loadComponent: () =>
     import('./pages/blog-detail/blog-detail.component')

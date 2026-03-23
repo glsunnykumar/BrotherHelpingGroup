@@ -1,0 +1,38 @@
+<div class="blog-page">
+
+  <h2 class="heading">Our Blogs</h2>
+
+  <div class="grid">
+
+    <div class="blog-card" *ngFor="let blog of blogs">
+
+      <!-- IMAGE -->
+      <div class="image">
+        <img [src]="blog.imageUrl || 'assets/default.jpg'">
+      </div>
+
+      <!-- CONTENT -->
+      <div class="content">
+
+        <h3>{{blog.title}}</h3>
+
+        <p>
+          {{blog.content | slice:0:120}}...
+        </p>
+
+        <div class="meta">
+          <span>✍️ {{blog.author}}</span>
+          <span>📅 {{blog.createdAt?.toDate?.() | date:'mediumDate'}}</span>
+        </div>
+
+        <button (click)="openBlog(blog.id)">
+          Read More →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
