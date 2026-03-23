@@ -11,6 +11,12 @@ export const routes: Routes = [
   { path: 'team', component: TeamComponent },
   { path: 'contribution', component: ContributionComponent },
   { path: 'about-us', component: AboutUsComponent },
+  {
+  path: 'blog/:id',
+  loadComponent: () =>
+    import('./pages/blog-detail/blog-detail.component')
+    .then(m => m.BlogDetailComponent)
+},
    { path: 'login', component: LoginComponent },
     // ✅ Admin lazy-loaded standalone route
   {
