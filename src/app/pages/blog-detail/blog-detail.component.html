@@ -1,5 +1,5 @@
 <div class="blog-container" *ngIf="blog">
-
+  <app-global-loader [loading]="isLoading" />
   <!-- COVER -->
   <div class="cover">
     <img [src]="blog.imageUrl">
@@ -17,20 +17,20 @@
     </div>
 
     <!-- SHARE -->
-  
+
     <div class="share">
 
-  <button (click)="share('whatsapp')" class="whatsapp-btn">
-    <i class="fab fa-whatsapp"></i>
-    WhatsApp
-  </button>
+      <button (click)="share('whatsapp')" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+        WhatsApp
+      </button>
 
-  <button (click)="share('facebook')" class="facebook-btn">
-    <i class="fab fa-facebook-f"></i>
-    Facebook
-  </button>
+      <button (click)="share('facebook')" class="facebook-btn">
+        <i class="fab fa-facebook-f"></i>
+        Facebook
+      </button>
 
-</div>
+    </div>
 
   </div>
 
