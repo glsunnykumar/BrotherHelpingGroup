@@ -37,9 +37,9 @@ export class BlogService {
     });
   }
 
-  async updateBlog(id: string, data: Blog) {
+  async updateBlog(id: string, data: any) {
     const docRef = doc(this.firestore, `blogs/${id}`);
-   // return await updateDoc(docRef, data);
+    return await updateDoc(docRef, data);
   }
 
   async deleteBlog(id: string) {

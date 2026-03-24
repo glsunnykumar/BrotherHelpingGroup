@@ -2,10 +2,13 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../admin/blog/blog.service';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-blog-detail',
-  imports: [CommonModule],
+  imports: [CommonModule ,
+    MatIconModule
+  ],
   templateUrl: './blog-detail.component.html',
   styleUrl: './blog-detail.component.scss'
 })
@@ -41,13 +44,14 @@ relatedBlogs: any[] = [];
 share(platform: string){
 
   const url = window.location.href;
+  console.log(url);
 
   if(platform === 'whatsapp'){
     window.open(`https://wa.me/?text=${url}`);
   }
 
   if(platform === 'facebook'){
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
   }
 
 }

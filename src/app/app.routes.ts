@@ -12,31 +12,31 @@ export const routes: Routes = [
   { path: 'contribution', component: ContributionComponent },
   { path: 'about-us', component: AboutUsComponent },
   {
-  path: 'blogs',
-  loadComponent: () =>
-    import('./pages/blog-list/blog-list.component')
-    .then(m => m.BlogListComponent)
-},
+    path: 'blogs',
+    loadComponent: () =>
+      import('./pages/blog-list/blog-list.component').then(
+        (m) => m.BlogListComponent,
+      ),
+  },
   {
-  path: 'blog/:id',
-  loadComponent: () =>
-    import('./pages/blog-detail/blog-detail.component')
-    .then(m => m.BlogDetailComponent)
-},
-   { path: 'login', component: LoginComponent },
-    // ✅ Admin lazy-loaded standalone route
+    path: 'blog/:id',
+    loadComponent: () =>
+      import('./pages/blog-detail/blog-detail.component').then(
+        (m) => m.BlogDetailComponent,
+      ),
+  },
+  { path: 'login', component: LoginComponent },
+  // ✅ Admin lazy-loaded standalone route
   {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.routes').then((m) => m.ADMIN_ROUTES),
-      canActivate :[authGuard]
+    canActivate: [authGuard],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
-  ];
+];
 
-  export const appConfig = {
-    providers: [
-      provideRouter(routes),
-    ],
-  };
+export const appConfig = {
+  providers: [provideRouter(routes)],
+};

@@ -40,7 +40,7 @@ export class AddEditBlogComponent implements OnInit {
       this.form.patchValue({
         title: data.title,
         content: data.content,
-        author: data.author
+        author: data.author,
       });
 
       this.previewImage = data.imageUrl;
@@ -82,8 +82,10 @@ export class AddEditBlogComponent implements OnInit {
       content: this.form.value.content ?? '',
       author: this.form.value.author ?? '',
       imageUrl: imageUrl,
-       createdAt: new Date()
+      createdAt: new Date()
     };
+
+    console.log('Submitting blog data:', data);
 
     if (this.blogId) {
       await this.blogService.updateBlog(this.blogId, data);
