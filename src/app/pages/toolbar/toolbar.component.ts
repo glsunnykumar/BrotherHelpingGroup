@@ -4,9 +4,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../services/auth/auth.service';
 @Component({
   selector: 'app-toolbar',
   imports: [
@@ -15,11 +16,15 @@ import { MatDialog } from '@angular/material/dialog';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    CommonModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
+  constructor(
+     private router:Router,
+    public authService: AuthService) {}
   private dialog = inject(MatDialog);
   openLoginModal() {
     this.dialog.open(LoginComponent, {
@@ -28,5 +33,10 @@ export class ToolbarComponent {
       disableClose: false,
       autoFocus: false,
     });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/home']); // ✅ use parentheses, not square brackets
   }
 }
