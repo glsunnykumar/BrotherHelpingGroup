@@ -5,7 +5,9 @@ import { Auth,
    signOut, 
    User, 
    createUserWithEmailAndPassword,
-   onAuthStateChanged} 
+   onAuthStateChanged,
+   setPersistence,
+   browserLocalPersistence} 
    from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 
@@ -34,6 +36,8 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
+       // 🔥 THIS LINE IS THE KEY
+       await setPersistence(this.auth, browserLocalPersistence);
       return await signInWithEmailAndPassword(this.auth, email, password);
     } catch (err) {
       throw err;
