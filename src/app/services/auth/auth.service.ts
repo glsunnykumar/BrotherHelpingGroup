@@ -2,16 +2,12 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Auth,
    signInWithEmailAndPassword, 
    updateProfile,
-   GoogleAuthProvider,
-   signInWithPopup,
    signOut, 
    User, 
    createUserWithEmailAndPassword,
    onAuthStateChanged} 
    from '@angular/fire/auth';
-import { doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
-import { Router } from '@angular/router'; 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +23,7 @@ export class AuthService {
   constructor(private auth: Auth) {
        // Listen to Firebase auth changes
     onAuthStateChanged(this.auth, (user) => {
+      console.log('Auth state changed:', user);
       this.userSignal.set(user);
       this.currentUser.next(user);
     });

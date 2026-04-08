@@ -32,7 +32,7 @@ import { updateProfile } from '@angular/fire/auth';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  isLoginMode = false; // toggle between login/register
+  isLoginMode = true; // toggle between login/register
   loginForm: FormGroup;
   signupForm: FormGroup;
 

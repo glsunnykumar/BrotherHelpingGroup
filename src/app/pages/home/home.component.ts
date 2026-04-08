@@ -13,6 +13,7 @@ import { register } from 'swiper/element-bundle';
 import { MatDialog } from '@angular/material/dialog';
 import { MemberComponent } from '../member/member/member.component';
 import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -80,10 +81,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private firestore: Firestore ,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthService
   ) {
     const tasksCollection = collection(this.firestore, 'tasks');
     this.tasks$ = collectionData(tasksCollection, { idField: 'id' });
+    this.authService.logout(); // Ensure user is logged out on home page load
   }
   ngOnInit(): void {
     register();
