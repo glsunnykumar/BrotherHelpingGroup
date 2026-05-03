@@ -151,7 +151,7 @@ ngOnDestroy() {
     });
   }
 
-  openEventDialog() {
+  openJobFairDialog() {
     this.dialog.open(ContributionComponent, {
       width: '400px',
     });
