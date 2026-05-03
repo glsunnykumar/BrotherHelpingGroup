@@ -92,27 +92,47 @@
 
       </div> -->
    <div class="contributor-column">
-  <mat-card class="top-contributors-card upcoming-event-card">
-  
-    <mat-card-title>Upcoming Event</mat-card-title>
-  
-    <mat-card-content>
-      <div class="video-wrapper">
-        <video class="event-video" controls muted playsinline>
-          <source src="assets/vedio/checkup.mp4" type="video/mp4" />
-        </video>
-      </div>
-  
-      <div class="event-info">
-        <h3>Free Health Checkup 2026</h3>
-        <p>📅 21 Feb 2026</p>
-        <p>📍 Chetru Dharamshala, Himachal Pradesh</p>
-        <p>Sponsored By Pulse Hospital Shahpur</p>
-      </div>
-    </mat-card-content>
-  
-  
-  </mat-card>
+ 
+    <mat-card class="top-contributors-card upcoming-event-card">
+
+  <mat-card-title>Upcoming Event</mat-card-title>
+
+  <mat-card-content>
+
+    <!-- IMAGE -->
+    <div class="image-wrapper">
+      <img src="assets/rojgarMela.jpeg" alt="Event Image" />
+    </div>
+
+    <!-- INFO -->
+    <div class="event-info">
+      <h3>Job Fair 2026</h3>
+      <p>📅 22 May 2026</p>
+      <p>📍 Chandni Hotel, vill Sakoh Dshala Road Himachal Pradesh</p>
+      <p>Sponsored By Motiya Plaza Baddi Solan</p>
+    </div>
+
+
+    <div class="countdown">
+  ⏳ Starts in:
+  <span>{{countdown.days}}d</span>
+  <span>{{countdown.hours}}h</span>
+  <span>{{countdown.minutes}}m</span>
+  <span>{{countdown.seconds}}s</span>
+</div>
+
+
+<div class="btn-wrapper">
+  <button class="apply-btn" (click)="openEventDialog()">
+    🚀 Apply Now
+  </button>
+</div>
+
+
+  </mat-card-content>
+
+</mat-card>
+
 </div>
 
    

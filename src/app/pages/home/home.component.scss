@@ -213,6 +213,133 @@
   background: #000;
 }
 
+.image-wrapper {
+  width: 100%;
+  height: auto;   // 🔥 allow natural height
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;   // 🔥 FULL image visible
+  object-fit: contain; // 🔥 no cropping
+  display: block;
+}
+
+.upcoming-event-card {
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  background: #ffffff;
+  transition: 0.3s;
+}
+
+.upcoming-event-card:hover {
+  transform: translateY(-5px);
+}
+
+.countdown {
+  margin-top: 12px;
+  text-align: center;
+  font-weight: 500;
+  color: #374151;
+}
+
+.countdown span {
+  display: inline-block;
+  margin: 0 4px;
+  padding: 6px 10px;
+  background: #111827;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* subtle glow animation */
+.countdown span {
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.4);
+  }
+  to {
+    box-shadow: 0 0 12px rgba(79, 70, 229, 0.8);
+  }
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;  // 🔥 centers horizontally
+  margin-top: 15px;
+}
+
+.apply-btn {
+  margin-top: 15px;
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.apply-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+}
+
+/* PULSE ANIMATION */
+.apply-btn::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: 50%;
+  left: 50%;
+  background: rgba(255,255,255,0.2);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.6;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.event-info {
+  text-align: center;
+  padding: 10px;
+}
+
+.event-info h3 {
+  font-weight: 600;
+  margin: 10px 0;
+}
+
 /* Video fits perfectly inside card */
 .event-video {
   position: absolute;

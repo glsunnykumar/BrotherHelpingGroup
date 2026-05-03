@@ -77,6 +77,17 @@ export class HomeComponent implements OnInit {
   
   ];
 
+  eventDate = new Date('2026-05-22T00:00:00'); // 🔥 your event date
+
+countdown: any = {
+  days: '00',
+  hours: '00',
+  minutes: '00',
+  seconds: '00'
+};
+
+private timer: any;
+
   tasks$: Observable<any[]>;
 
   constructor(private firestore: Firestore ,
@@ -90,10 +101,58 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     register();
+     this.startCountdown();
   }
+
+
+  startCountdown() {
+  this.timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = this.eventDate.getTime() - now;
+
+    if (distance <= 0) {
+      clearInterval(this.timer);
+      this.countdown = {
+        days: '00',
+        hours: '00',
+        minutes: '00',
+        seconds: '00'
+      };
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    this.countdown = {
+      days: this.format(days),
+      hours: this.format(hours),
+      minutes: this.format(minutes),
+      seconds: this.format(seconds)
+    };
+
+  }, 1000);
+}
+
+format(val: number) {
+  return val < 10 ? '0' + val : val;
+}
+
+
+ngOnDestroy() {
+  clearInterval(this.timer);
+}
 
   openMemberDialog(): void {
     this.dialog.open(MemberComponent, {
+      width: '400px',
+    });
+  }
+
+  openEventDialog() {
+    this.dialog.open(ContributionComponent, {
       width: '400px',
     });
   }
