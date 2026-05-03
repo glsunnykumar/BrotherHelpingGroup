@@ -1,86 +1,82 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { Auth,
-   signInWithEmailAndPassword, 
-   updateProfile,
-   signOut, 
-   User, 
-   createUserWithEmailAndPassword,
-   onAuthStateChanged,
-   setPersistence,
-   browserLocalPersistence} 
-   from '@angular/fire/auth';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal, computed } from '@angular/core';
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  updateProfile,
+  signOut,
+  User,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence
+} from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+import { fromEventPattern } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-   // 🔥 Signal to hold user
+  // 🔥 Signal (MAIN STATE)
   userSignal = signal<User | null>(null);
-   
-   private currentUser = new BehaviorSubject<User | null>(null);
-   user$ = this.currentUser.asObservable();
+
+  // 🔥 Observable (for guards / async pipe)
+  user$: Observable<User | null>;
 
   constructor(private auth: Auth) {
-       // Listen to Firebase auth changes
-    onAuthStateChanged(this.auth, (user) => {
-      console.log('Auth state changed:', user);
+
+    // 🔥 Convert Firebase listener → Observable
+    this.user$ = fromEventPattern<User | null>(
+      (handler) => onAuthStateChanged(this.auth, handler),
+      (_, unsubscribe) => unsubscribe()
+    );
+
+    // 🔥 Sync signal with Firebase
+    this.user$.subscribe(user => {
+      console.log('🔥 Auth State Changed:', user);
       this.userSignal.set(user);
-      this.currentUser.next(user);
     });
+
   }
 
-    // Helper computed state
-  isLoggedIn = () => this.userSignal() !== null;
+  // ✅ Computed state
+  isLoggedIn = computed(() => this.userSignal() !== null);
 
+  // 🔐 LOGIN
   async login(email: string, password: string) {
-    try {
-       // 🔥 THIS LINE IS THE KEY
-       await setPersistence(this.auth, browserLocalPersistence);
-      return await signInWithEmailAndPassword(this.auth, email, password);
-    } catch (err) {
-      throw err;
-    }
+
+    await setPersistence(this.auth, browserLocalPersistence);
+
+    return await signInWithEmailAndPassword(this.auth, email, password);
   }
 
-
-   // ✅ Register Method
+  // 🆕 REGISTER
   async register(email: string, password: string, displayName?: string) {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
 
-      // 🔥 Update display name if provided
-      if (userCredential.user && displayName) {
-        await updateProfile(userCredential.user, {
-          displayName: displayName
-        });
-      }
+    const userCredential = await createUserWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    );
 
-      // 🔥 Update signal
-      this.userSignal.set(userCredential.user);
-
-      return userCredential;
-
-    } catch (error) {
-      throw error; // pass error to component
+    if (displayName) {
+      await updateProfile(userCredential.user, {
+        displayName
+      });
     }
+
+    return userCredential;
   }
 
-
-
-  
-
-   // Logout Admin
-     logout() {
-    return signOut(this.auth);
+  // 🚪 LOGOUT
+  async logout() {
+    await signOut(this.auth);
   }
 
+  // 👤 CURRENT USER (sync access if needed)
   getCurrentUser() {
-    return this.currentUser.value;
+    return this.userSignal();
   }
+
 }
