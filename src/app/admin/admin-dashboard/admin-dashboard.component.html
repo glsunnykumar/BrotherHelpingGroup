@@ -8,13 +8,24 @@
       </div>
     </mat-card>
 
+    
+      <mat-card class="summary-card">
+      <div class="info">    
+        <p>Registered Aspirant Download</p>
+        <button mat-raised-button color="primary" (click)="exportToExcel()">
+  📥 Download Excel
+</button>
+      </div>
+    </mat-card>
+
     <mat-card class="summary-card">
       <mat-icon>pending</mat-icon>
       <div class="info">    
         <h3>{{ pendingMember() }}</h3>
-        <p>Pending Members</p>
+        <p>Pending Members updated</p>
       </div>
     </mat-card>
+
 
     <!-- <mat-card class="summary-card">
       <mat-icon>check_circle</mat-icon>

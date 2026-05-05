@@ -13,7 +13,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 import { MemberService } from '../../services/member/member.service';
 import { UpdateMemberStatusComponent } from '../update-member-status/update-member-status.component';
+import * as XLSX from 'xlsx';
 import { deleteObject, getStorage, ref } from '@angular/fire/storage';
+import { collection, Firestore, getDocs } from '@angular/fire/firestore';
 // import { ReusableTableComponent } from '../reusable-table/reusable-table.component';
 // import { EnquireService } from '../../service/enquire/enquire.service';
 // import { EnquiryEditComponentComponent } from '../enquiry-edit/enquiry-edit-component/enquiry-edit-component.component';
@@ -53,7 +55,8 @@ export class AdminDashboardComponent {
   constructor(
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
-    private memberService: MemberService
+    private memberService: MemberService,
+    private firestore: Firestore
   ) {
     //this.fetchDashboardData();
     this.fetchMembers();
@@ -121,4 +124,35 @@ export class AdminDashboardComponent {
       });
     }
   }
+
+  async exportToExcel() {
+
+  const snapshot = await getDocs(collection(this.firestore, 'aspirant'));
+
+  const data: any[] = [];
+
+  snapshot.forEach(doc => {
+    const d = doc.data();
+
+    data.push({
+      Name: d['name'],
+      Mobile: d['contactNumber'],
+      Address: d['address'],
+      Qualification: d['qualification'],
+      Date: d['createdAt']?.toDate ? d['createdAt'].toDate().toLocaleString() : ''
+    });
+  });
+
+  // Convert JSON → worksheet
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+
+  // Create workbook
+  const workbook: XLSX.WorkBook = {
+    Sheets: { 'Registrations': worksheet },
+    SheetNames: ['Registrations']
+  };
+
+  // Download file
+  XLSX.writeFile(workbook, 'JobFair_Registrations.xlsx');
+}
 }
