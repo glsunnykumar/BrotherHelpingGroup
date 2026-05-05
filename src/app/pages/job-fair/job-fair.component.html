@@ -1,0 +1,77 @@
+<h1 mat-dialog-title class="dialog-title">Registration Form</h1>
+
+<mat-dialog-content class="dialog-content">
+    <app-global-loader [loading]="isLoading" />
+  <form [formGroup]="jobFairForm" (ngSubmit)="onSubmit()" class="membership-form">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" placeholder="Enter your name" />
+    </mat-form-field>
+
+   
+
+    <mat-form-field appearance="outline">
+      <mat-label>Father's Name</mat-label>
+      <input matInput type="text" formControlName="fName" placeholder="Enter father's name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Address</mat-label>
+      <textarea matInput formControlName="address" placeholder="Enter your address"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+  <mat-label>Contact Number</mat-label>
+  <input matInput type="tel" formControlName="contactNumber" placeholder="Enter your contact number">
+</mat-form-field>
+    
+    <mat-label>Education Qualification</mat-label>
+<mat-radio-group formControlName="qualification" class="membership-row">
+
+  <mat-radio-button
+    *ngFor="let option of qualificationOptions"
+    [value]="option">
+
+    {{ option }}
+
+  </mat-radio-button>
+
+</mat-radio-group>
+
+
+    <!-- Adhar Upload -->
+    <!-- <div class="image-upload-row">
+      <div class="upload-field">
+        <label>Upload Aadhar Card Image</label>
+        <input type="file" accept="image/*" (change)="onAdharSelected($event)" />
+        <div *ngIf="imageAdharError" class="error">{{ imageAdharError }}</div>
+      </div>
+
+      <div class="image-preview" *ngIf="adharPreviewUrl && !imageAdharError">
+        <label>Preview:</label>
+        <img class="preview-img" [src]="adharPreviewUrl" alt="Aadhar Preview" />
+      </div>
+    </div> -->
+
+    <!-- Receipt Upload -->
+    <!-- <div class="image-upload-row">
+      <div class="upload-field">
+        <label>Upload Membership Receipt</label>
+        <input type="file" accept="image/*" (change)="onReceiptSelected($event)" />
+        <div *ngIf="imageReceiptError" class="error">{{ imageReceiptError }}</div>
+      </div>
+
+      <div class="image-preview" *ngIf="receiptPreviewUrl && !imageReceiptError">
+        <label>Preview:</label>
+        <img class="preview-img" [src]="receiptPreviewUrl" alt="Receipt Preview" />
+      </div>
+    </div> -->
+
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close (click)="dialogRef.close()">Cancel</button>
+      <button mat-raised-button type="submit" color="primary">Submit</button>
+    </mat-dialog-actions>
+
+  </form>
+</mat-dialog-content>

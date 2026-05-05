@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MemberComponent } from '../member/member/member.component';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../services/auth/auth.service';
+import { JobFairComponent } from '../job-fair/job-fair.component';
 
 @Component({
   selector: 'app-home',
@@ -152,7 +153,7 @@ ngOnDestroy() {
   }
 
   openJobFairDialog() {
-    this.dialog.open(ContributionComponent, {
+    this.dialog.open(JobFairComponent, {
       width: '400px',
     });
   }
